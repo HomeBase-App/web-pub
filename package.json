@@ -1,0 +1,35 @@
+{
+  "name": "homebase",
+  "productName": "HomeBase",
+  "version": "1.0.0",
+  "description": "Organize beyond",
+  "main": "index.js",
+  "devDependencies": {
+    "electron": "^12.0.2",
+    "electron-builder": "^22.3.2"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HomeBase-App/web-pub.git"
+  },
+  "author": "HomeBase App (Tejas Kamtam, Dhanush Pulavarthy, Rishikeshan Bharathi, Rishabh Baral)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/HomeBase-App/web-pub/issues"
+  },
+  "homepage": "https://github.com/HomeBase-App/web-pub#readme",
+  "build": {
+    "appId": "homebase.electron.app",
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "unicode": false,
+      "artifactName": "homebase.exe"
+    }
+  }
+}

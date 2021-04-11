@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> HomeBase - Home </title>
+
+    <!-- Basic Meta Tags. -->
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#E18499">
+    <meta name="keywords" content="HomeBase">
+    <meta name="description" content="Orgainze beyond.">
+    <meta name="subject" content="HomeBase App">
+    <meta name="copyright" content="HomeBase App 2021">
+    <meta name="language" content="EN">
+    <meta name="robots" content="index,follow">
+    <meta name="revised" content="Monday, April 7th, 2021, 11:24 PM">
+    <meta name="Classification" content="Application">
+    <meta name="author" content="HomeBase">
+    <meta name="reply-to" content="dev@kura.gq">
+    <meta name="owner" content="HomeBase">
+    <meta name="url" content="http://home-base.gq">
+    <meta name="identifier-URL" content="http://home-base.gq">
+    <meta name="directory" content="submission">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="subtitle" content="Orgainze beyond.">
+    <meta name="target" content="all">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="DC.title" content="HomeBase">
+    <meta name="ResourceLoaderDynamicStyles" content="">
+    <meta name="medium" content="app">
+    <meta name="pageKey" content="guest-home">
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- OpenGraph Meta Tags. -->
+    <meta name="og:title" content="HomeBase">
+    <meta name="og:type" content="Application">
+    <meta name="og:url" content="http://home-base.gq">
+    <meta name="og:image" content="https://hacking-with-ht.ml/homebase/logo.png">
+    <meta name="og:site_name" content="HomeBase App">
+    <meta name="og:description" content="Orgainze beyond.">
+    <meta name="application-name" content="HomeBase">
+    <meta name="og:email" content="dev@kura.gq">
+    <meta name="og:latitude" content="32.935840">
+    <meta name="og:longitude" content="-96.954210">
+    <meta name="og:locality" content="Dallas">
+    <meta name="og:region" content="TX">
+    <meta name="og:postal-code" content="75063">
+    <meta name="og:country-name" content="USA">
+
+    <!-- Apple Meta Tags. -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="https://hacking-with-ht.ml/homebase/logo.png" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+
+    <!-- CSS. -->
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Poiret+One);
+        @import url(https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css);
+
+        * {
+            font-family: Poiret One;
+            color: #C0C0C0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: lightcoral;
+        }
+
+        /* Site preloader. */
+
+        #waitload {
+            transition-duration: 1s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            z-index: 9999;
+        }
+
+        #loader {
+            color: white;
+            padding-top: 350px;
+            opacity: 0;
+            margin: auto;
+            width: auto;
+            text-align: center;
+            animation: load 0.5s ease-in-out 0s 1 normal forwards;
+        }
+
+        #loader a {
+            font-weight: 800;
+            font-size: 70px;
+            width: 100vw;
+            text-align: center;
+        }
+
+        @keyframes load {
+            100% {
+                opacity: 1;
+                padding-top: 200px;
+            }
+        }
+
+        /* HTML grid. */
+
+        #nav {
+            grid-area: nav;
+            padding: 0 !important;
+        }
+
+        #nav img {
+            width: 60px;
+            position: absolute;
+            z-index: 1000;
+        }
+
+        #app {
+            grid-area: app;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        #app::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        #app::-webkit-scrollbar-track {
+            background-color: #2d2d31;
+            border-radius: 15px;
+        }
+
+        #app::-webkit-scrollbar-thumb {
+            background-color: #C0C0C0;
+            border-radius: 15px;
+        }
+
+        #rem {
+            grid-area: rem;
+        }
+
+        #gml {
+            grid-area: gml;
+        }
+
+        #nts {
+            grid-area: nts;
+        }
+
+        #wea {
+            grid-area: wea;
+        }
+
+        #cts {
+            grid-area: cts;
+        }
+
+        #new {
+            grid-area: new;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        #new::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        #app::-webkit-scrollbar-track {
+            background-color: #2d2d31;
+            border-radius: 15px;
+        }
+
+        #new::-webkit-scrollbar-thumb {
+            background-color: #C0C0C0;
+            border-radius: 15px;
+        }
+
+
+        #grid {
+            display: grid;
+            grid-template-areas: 'nav nav nav''app rem gml''app nts wea''app cts new';
+            grid-template-rows: auto 1fr 1fr 1fr;
+            grid-template-columns: 2fr 2fr 2fr;
+            grid-gap: 5px;
+            margin: 5px;
+            height: calc(100vh - 10px);
+        }
+
+        #grid>div {
+            background-color: #2D2D31;
+            filter: drop-shadow(0px 0px 2px #111111);
+            text-align: center;
+            font-size: 30px;
+            border-radius: 10px;
+        }
+
+        /* Logout Button. */
+
+        #logout {
+            float: right;
+            font-size: 40px;
+            margin-right: 7px;
+            margin-top: 2px;
+            margin-left: -10px;
+            float: right;
+            cursor: pointer;
+        }
+
+        .fa-sign-out-alt {
+            color: #CC1400;
+        }
+
+        #logout span {
+            display: block;
+            color: #CC1400;
+            font-size: 15px !important;
+            font-weight: bold;
+        }
+
+        /* PFP icon. */
+
+        #profile {
+            font-size: 40px;
+            margin-top: 5px;
+            margin-left: 7px;
+            float: left;
+            cursor: pointer;
+        }
+
+        #profile span {
+            display: block;
+            font-size: 15px !important;
+            font-weight: bold;
+        }
+
+        /* Reminder CSS */
+
+        .widget .widget-header,
+        .widget-reminder-content,
+        .widget-reminder-time,
+        a.widget-header-title {
+            padding: 0.625rem;
+        }
+
+        .widget-chat-message:after,
+        .widget-chat-message:before,
+        .widget-reminder-container:after,
+        .widget-reminder-container:before {
+            display: table;
+            content: "";
+            clear: both;
+        }
+
+        .widget-footer.with-border,
+        .widget-reminder-container+.widget-reminder-container {
+            border-top: 1px solid white;
+        }
+
+        .widget-footer.with-bg,
+        .widget-header.with-bg {
+            background: #efeff4;
+        }
+
+        .widget-header.with-border {
+            border-bottom: 1px solid #efeff4;
+        }
+
+        .widget-reminder-header {
+            background: #696977;
+            padding: 0.625rem;
+            font-size: 0.90rem;
+            font-weight: 900;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .widget-reminder-container {
+            position: relative;
+        }
+
+        .inverse-mode .widget-reminder-container+.widget-reminder-container {
+            border-color: #333;
+        }
+
+        .inverse-mode .widget-reminder-header {
+            background: #212121;
+        }
+
+        .widget-reminder-time {
+            width: 5rem;
+            float: left;
+            text-align: left;
+            font-size: 0.9rem;
+            color: white;
+            white-space: nowrap;
+        }
+
+        .widget-reminder-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 5rem;
+            width: 0.125rem;
+            background: #696977;
+        }
+
+        .widget-reminder-content {
+            margin-left: 5.125rem;
+            color: white;
+        }
+
+        .widget-header-title {
+            margin: 0;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .widget .widget-title,
+        .widget .widget-title a {
+            font-size: .75rem;
+            color: white;
+            text-align: initial;
+        }
+
+        .widget .widget-title {
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .widget-desc,
+        .widget-desc a {
+            font-size: .6875rem;
+            line-height: 1rem;
+            color: #ff4934;
+            font-weight: 500;
+            text-align: initial;
+            margin-top: 2px;
+        }
+
+        .pull-left {
+            float: left !important;
+            margin-left: -5px;
+        }
+
+        .pull-right {
+            float: right !important;
+        }
+
+        .widget .widget-header,
+        .widget-reminder-content,
+        .widget-reminder-time,
+        a.widget-header-title {
+            padding: .625rem;
+        }
+
+        .m-t-15 a {
+            font-size: .75rem;
+            float: left;
+            padding-bottom: 4px;
+            margin-left: 3px;
+        }
+
+        .m-t-15 img {
+            width: 16px;
+        }
+
+        /* Gmail CSS. */
+
+        #gml {
+            position: relative;
+            border-radius: 10px;
+        }
+
+        #gml .gmail-topBar {
+            flex: 1 100%;
+            height: 40%;
+            border-radius: 10px 10px 0 0;
+            background: #B4BDCF;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        #gml .gmail-topBar a img {
+            max-width: 80px;
+            height: 75px;
+            position: relative;
+            right: 13px;
+            top: 5px;
+        }
+
+        #gml .gmail-topBar h2 {
+            position: relative;
+            bottom: 10px;
+            font-size: 25px;
+            color: #111111;
+        }
+
+        #gml .gmail-topBar p {
+            position: relative;
+            right: 149px;
+            top: 14px;
+            font-size: 15px;
+            color: #111111;
+        }
+
+        #gml .gmail-topBar img {
+            max-width: 30px;
+            height: 30px;
+            position: relative;
+            right: 20px;
+        }
+
+        #gml .gmailContent {
+            flex: 0 0 100%;
+            height: 60%;
+            display: flex;
+            color: white;
+            margin-top: 10px;
+        }
+
+        #gml .gmailContent .emailDate {
+            position: fixed;
+            margin: 10px;
+            font-size: 20px;
+            white-space: nowrap;
+        }
+
+        #gml .gmailContent .gmailMainContent {
+            flex: 0 100%;
+            flex-direction: column;
+            position: relative;
+            text-align: end;
+            margin-left: -20px;
+            font-size: 25px;
+        }
+
+        #gml .gmailContent .gmailMainContent .gmailTitle {
+            font-size: 25px;
+            font-weight: 400;
+            text-decoration: underline;
+        }
+
+        #gml .gmailContent .gmailMainContent .gmailAdress {
+            /* margin: 10px; */
+            font-weight: 400;
+            font-style: italic;
+            right: 25px;
+            color: #fc7a6b;
+        }
+
+        /* Weather CSS. */
+
+        .locationImage img {
+            content: url(https://hacking-with-ht.ml/homebase/extras/location-hover.png);
+            max-width: 50px;
+            border-radius: 10px;
+            position: fixed;
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+
+        .locationImage:hover img {
+            content: url(https://hacking-with-ht.ml/homebase/extras/location.png);
+        }
+
+        #wea {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #wea .weatherIcon {
+            flex: 1 100%;
+            height: 60%;
+            border-radius: 10px 10px 0 0;
+            background: #B4BDCF;
+            font-family: weathericons;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 60px;
+        }
+
+        #wea .weatherIcon i {
+            padding: 35px;
+            margin-top: 15px;
+            color: black;
+        }
+
+        #wea .weatherInfo {
+            flex: 0 0 70%;
+            height: 40%;
+            background: #2d2d31;
+            border-radius: 0 0 0 10px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+
+        #wea .weatherInfo .weatherTemperature {
+            flex: 0 0 40%;
+            width: 100%;
+            font-size: 45px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #wea .weatherInfo .weatherDescription {
+            flex: 0 60%;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+        }
+
+        #wea .weatherInfo .weatherDescription .weatherCondition {
+            text-transform: uppercase;
+            font-size: 20px;
+            font-weight: 100;
+        }
+
+        #wea .weatherInfo .weatherDescription .weatherPlace {
+            font-size: 15px;
+        }
+
+        #wea .weatherInfo .locationImage {
+            flex: 0 0 40%;
+            display: flex;
+            max-width: 50px;
+            height: 50px;
+            position: relative;
+            right: 17px;
+            justify-content: space-around;
+            border-radius: 10%;
+        }
+
+        #wea .weatherDate {
+            flex: 0 0 30%;
+            height: 40%;
+            background: #696977;
+            border-bottom-right-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* Contacts CSS. */
+
+        #cts .contacts-container {
+            position: relative;
+            display: none;
+            color: white;
+        }
+
+        #cts .contacts-container img {
+            position: absolute;
+            margin-top: 30px;
+            margin-left: 30px;
+            max-height: 130px;
+            display: block;
+            border-radius: 10px;
+        }
+
+        #cts .contacts-container .contactName {
+            position: absolute;
+            margin-top: 35px;
+            margin-left: 180px;
+            font-size: 48px;
+            font-weight: 400px;
+        }
+
+        #cts .contacts-container .contactNumber {
+            position: absolute;
+            margin-top: 95px;
+            margin-left: 180px;
+            font-size: 20px;
+            font-weight: 200px;
+        }
+
+        #cts .contacts-container .contactEmail {
+            position: absolute;
+            margin-top: 120px;
+            margin-left: 180px;
+            font-size: 20px;
+            font-weight: 200px;
+        }
+
+        .dots {
+            position: relative;
+            margin: 0 5px;
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dots:hover {
+            background-color: #CC1400;
+        }
+
+        /* App CSS. */
+
+        .search {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .search input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+            color: black;
+            font-weight: bold;
+            width: 300px;
+        }
+
+        .search button {
+            padding: 6px 10px;
+            margin-top: 8px;
+            margin-right: 16px;
+            background: #edf6fd;
+            font-size: 17px;
+            border: 2px;
+            border-color: black;
+            cursor: pointer;
+        }
+
+        .search button:hover {
+            background: #696977;
+        }
+
+        .container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+
+        .image {
+            display: block;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            transition: .5s ease;
+            background-color: #696977AF;
+            border-radius: 20px;
+        }
+
+        .container:hover .overlay {
+            opacity: 1;
+        }
+
+        .container:hover .image {
+            filter: blur(6px);
+        }
+
+        .text {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            text-align: center;
+            text-shadow: 1px 1px black;
+        }
+
+        li {
+            display: block;
+            width: 33%;
+            float: left;
+            padding-bottom: 15px;
+        }
+
+        /* Notes CSS. */
+
+        #nts::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        #nts::-webkit-scrollbar-track {
+            background-color: #2d2d31;
+            border-radius: 15px;
+        }
+
+        #nts::-webkit-scrollbar-thumb {
+            background-color: #C0C0C0;
+            border-radius: 15px;
+        }
+
+        #nts {
+            top: 46%;
+            right: 32%;
+            justify-content: center;
+            overflow: scroll;
+            overflow-x: hidden;
+        }
+
+        #nts #edit a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            border-radius: 15px;
+            margin-right: 5px;
+            margin-top: 7px;
+        }
+
+        #nts #edit a p {
+            display: flex;
+            position: relative;
+            flex-wrap: wrap;
+            margin-left: 10px;
+        }
+
+        /* News CSS. */
+
+        #new .news-header {
+            flex: 0 0 100%;
+            height: 30%;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            padding-top: 10px;
+            display: flex;
+            align-items: center;
+            color: white;
+            background-color: #2d2d31;
+        }
+
+        #new .news-header a img {
+            max-width: 50px;
+            height: 50px;
+            position: relative;
+            left: 20px;
+        }
+
+        #new .news-header h4 {
+            position: relative;
+            left: 110px;
+            font-size: 30px;
+            font-weight: 200;
+        }
+
+        #new .news-container {
+            position: fixed;
+            display: none;
+        }
+
+        #new .news-container {
+            position: fixed;
+            padding-top: 15px;
+            padding-right: 40px;
+            padding-left: 50px;
+            font-size: 20px;
+            font-weight: 250;
+        }
+
+        #new .news-container img {
+            position: fixed;
+            bottom: 25px;
+            max-width: 125px;
+            max-height: 125px;
+            padding-left: 250px;
+        }
+
+        #new .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 43%;
+            width: auto;
+            margin-top: -30px;
+            padding: 16px;
+            color: #888;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            display: block;
+        }
+
+        /* Position the "next button" to the right */
+
+        #new .next {
+            position: absolute;
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+
+        #new .prev:hover,
+        .next:hover {
+            color: white;
+        }
+
+        #map {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            z-index: 1000;
+            height: 80%;
+        }
+
+        #map-options {
+            position: fixed !important;
+            top: 80%;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            z-index: 1001;
+            height: 20%;
+            padding-left: 20px;
+            filter: drop-shadow(0px 0px 20px red);
+        }
+
+        #confirmPosition,
+        #goBack {
+            position: relative;
+            font-size: 20px;
+            transition: all .15s ease;
+            letter-spacing: .025em;
+            text-transform: none;
+            will-change: transform;
+            color: #151515;
+            font-weight: bold;
+            padding: 10px;
+            border-color: #C0C0C0;
+            background-color: #C0C0C0;
+            box-shadow: 0 4px 6px rgb(50 50 93 / 11%), 0 1px 3px rgb(0 0 0 / 8%);
+            border-radius: 10px;
+        }
+
+        #confirmPosition:hover,
+        #goBack:hover {
+            border-color: #CC1400;
+            background-color: #CC1400;
+            color: #C0C0C0;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="waitload">
+        <div id="loader">
+            <a> Welcome to HomeBase </a>
+            <p> Starting Application </p>
+        </div>
+    </div>
+
+    <!-- Map picker. -->
+    <div id="map"></div>
+    <div id="map-options">
+        <h3> Move the map around to find your location, the location will be picked where the red pointer is! </h3>
+        <br />
+        <button id="goBack"> Go Back </button>
+        <button id="confirmPosition"> Confirm Position </button>
+    </div>
+
+    <!-- HTML widget grid. -->
+    <div id="grid">
+        <!-- Navbar. -->
+        <div id="nav">
+            <!-- Logo. -->
+            <img src="https://hacking-with-ht.ml/homebase/logo.png" alt="HB" />
+            <!-- Account information. -->
+            <div id="profile" onclick="location.href = 'account.html'">
+                <em class="fas fa-user-circle"><span> ••• </span></em>
+            </div>
+            <!-- Logout button. -->
+            <div id="logout" onclick="logout()"><em class="fas fa-sign-out-alt"><span> Logout </span></em></div>
+        </div>
+        <!-- Applist widget. -->
+        <div id="app">
+            <!-- Search elements. -->
+            <div class="search">
+                <input type="text" placeholder="Search" id="searchbar" onkeyup="search()">
+                <button onclick="search()"><em class="fa fa-search"></em></button>
+            </div>
+            <!-- Applist panel. -->
+            <div class="panel">
+                <ul id="list" style="list-style-type: none"></ul>
+            </div>
+        </div>
+        <!-- Reminders widget. -->
+        <div id="rem">
+            <div class="row">
+                <div class="col-md-5">
+                    <!-- Hardcoded data. -->
+                    <div class="widget widget-reminder">
+                        <!-- Today date. -->
+                        <div class="widget-reminder-header" id="rem-today"> ••• </div>
+                        <div class="widget-reminder-container">
+                            <div class="widget-reminder-time"> 09:00 </div>
+                            <div class="widget-reminder-divider bg-success"></div>
+                            <div class="widget-reminder-content">
+                                <h4 class="widget-title"> Need To Take Medication </h4>
+                            </div>
+                        </div>
+                        <div class="widget-reminder-container">
+                            <div class="widget-reminder-time"> 20:00 <br /> 21:00 </div>
+                            <div class="widget-reminder-divider bg-primary"></div>
+                            <div class="widget-reminder-content">
+                                <h4 class="widget-title"> Doctor's Appointment </h4>
+                                <div class="widget-desc"><em class="fa fa-map-pin"></em>
+                                    Parkway Blvd, Coppell, TX
+                                </div>
+                                <div class="m-t-15">
+                                    <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
+                                        class="pull-left m-r-5" alt="" />
+                                    <a> Dr. Richard </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Tomorrow date. -->
+                        <div class="widget-reminder-header" id="rem-tmw"> ••• </div>
+                        <div class="widget-reminder-container">
+                            <div class="widget-reminder-time"> All day </div>
+                            <div class="widget-reminder-divider bg-purple"></div>
+                            <div class="widget-reminder-content">
+                                <h4 class="widget-title"><em class="fa fa-gift text-purple"></em> Josh's Birthday </h4>
+                                <div class="widget-desc"><em class="fa fa-map-pin"></em> Wendy's House </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Gmail widget. -->
+        <div id="gml">
+            <div class="gmail-topBar">
+                <a href="https://gmail.com/"><img src="https://hacking-with-ht.ml/homebase/extras/gmail.png"
+                        alt="Icon" /></a>
+                <h2> All Mail </h2>
+                <p> 72 unread </p>
+                <img src="https://hacking-with-ht.ml/homebase/extras/refresh.png" alt="Refresh" />
+            </div>
+
+            <div class="gmailContent">
+                <!-- Today date. -->
+                <div class="emailDate"> ••• </div>
+                <!-- Hardcoded data. -->
+                <div class="gmailMainContent">
+                    <div class="gmailTitle"> Recipt For Your Order </div>
+                    <div class="gmailAdress"> administrator@auto.reply </div>
+                    <div class="gmailDes"> Thank You for your order. Your Order Number ... </div>
+                </div>
+            </div>
+        </div>
+        <!-- Notes widget. -->
+        <div id="nts">
+            <!-- Editable. -->
+            <div id="edit">
+                <a contenteditable onkeyup="noteUpdate()" id="note-information"></a>
+            </div>
+        </div>
+        <!-- Weather widget. -->
+        <div id="wea">
+            <!-- Change location. -->
+            <a onclick="enableMap()" class="locationImage">
+                <img alt="Location" title="Change Location" />
+            </a>
+            <!-- API modifier placehoder. -->
+            <div class="weatherIcon"></div>
+            <div class="weatherInfo">
+                <div class="weatherTemperature"><span>00°F</span></div>
+                <div class="weatherDescription">
+                    <div class="weatherCondition">Loading...</div>
+                    <div class="weatherPlace">Searching...</div>
+                </div>
+            </div>
+            <div class="weatherDate"> ••• </div>
+        </div>
+        <!-- Contacts widget. -->
+        <div id="cts">
+            <!-- Hardcoded. -->
+            <div class="contacts-container">
+                <img src="https://static.wikia.nocookie.net/despicableme/images/c/ca/Bob-from-the-minions-movie.jpg/revision/latest/top-crop/width/360/height/450?cb=20151224154354"
+                    alt="pfp" />
+                <div class="contactName"> Tom </div>
+                <div class="contactNumber"> (123)-456-789 </div>
+                <div class="contactEmail"> tomCruise1999@gmail.com </div>
+            </div>
+
+            <div class="contacts-container">
+                <img src="https://static.wikia.nocookie.net/despicableme/images/1/1d/Kevin_minions.png/revision/latest?cb=20170703052012"
+                    alt="pfp" />
+                <div class="contactName"> Mary </div>
+                <div class="contactNumber"> (987)-654-3210 </div>
+                <div class="contactEmail"> mary_300@gmail.com </div>
+            </div>
+
+            <div class="contacts-container">
+                <img src="https://static.wikia.nocookie.net/despicableme/images/2/2b/Stuart.png/revision/latest?cb=20161108162855"
+                    alt="pfp" />
+                <div class="contactName"> Benjamin </div>
+                <div class="contactNumber"> (564)-987-1234 </div>
+                <div class="contactEmail"> ben10@gmail.com </div>
+            </div>
+
+            <!-- Page count. -->
+            <div class="dot-container">
+                <span class="dots" onclick="currentSlide(1)"></span>
+                <span class="dots" onclick="currentSlide(2)"></span>
+                <span class="dots" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
+        <!-- News widget. -->
+        <div id="new">
+            <div class="news-header">
+                <!-- Icon. -->
+                <a href="https://news.google.com">
+                    <img src="https://hacking-with-ht.ml/homebase/extras/googleNews.png" alt="G-news" />
+                </a>
+                <!-- Title. -->
+                <h4> GOOGLE NEWS </h4>
+            </div>
+            
+            <!-- API placehoder. -->
+            <div id="articles"></div>
+
+            <!-- News page mover. -->
+            <a class="prev" onclick="plusSlide(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlide(1)">&#10095;</a>
+        </div>
+    </div>
+    </div>
+
+    <!-- Imports for map data. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Jrp9PtHe0WapppUzxbIpMDWMAcV3qE4"></script>
+    <script src="https://unpkg.com/location-picker/dist/location-picker.min.js"></script>
+
+    <!-- Javascript. -->
+    <script>
+        /**
+         * This function merges multiple objects into one.
+         * 
+         * @name mergify
+         * @param {object} main Master object (All other objects merge into this).
+         * @param {array} subs Array of objects to merge into `main`.
+         * @return {object} Master object (`main`) with `subs` merged.
+         */
+        Object.mergify = (main, ...subs) => {
+            for (let obj of subs) for (let attrname in obj) main[attrname] = obj[attrname]
+            return main
+        }
+
+        /**
+         * This function returns a rank string from a number.
+         * 
+         * @name rank
+         * @return {string} A stringified number that has the number ordinal and formatting commas.
+         */
+        Number.prototype.rank = function () {
+            if (this % 10 === 1 && this != 11) return `${this.toLocaleString()}st`
+            else if (this % 10 == 2 && this != 12) return `${this.toLocaleString()}nd`
+            else if (this % 10 == 3 && this != 13) return `${this.toLocaleString()}rd`
+            else return `${this.toLocaleString()}th`
+        }
+
+        let slideInd = 1
+
+        // Logout event.
+        function logout() {
+
+            // Clear cache.
+            localStorage.removeItem(`dbdata`)
+            localStorage.removeItem(`dbdata-uncacheable`)
+            localStorage.removeItem(`cache-time`)
+            localStorage.removeItem(`username`)
+            localStorage.removeItem(`weather`)
+            localStorage.removeItem(`weather-timer`)
+            localStorage.removeItem(`news`)
+            localStorage.removeItem(`news-timer`)
+            localStorage.removeItem(`apps`)
+            location.href = `login.html`
+        }
+
+        // Window onload event.
+        window.onload = async _ => {
+            // Hide map.
+            Object.mergify(document.getElementById(`map`).style, { opacity: 0, pointerEvents: `none` })
+            Object.mergify(document.getElementById(`map-options`).style, { opacity: 0, pointerEvents: `none` })
+
+            // Hide preloader.
+            setTimeout(() => Object.mergify(document.getElementById(`waitload`).style, { opacity: 0, pointerEvents: `none`, transitionDuration: `1s` }), 1000)
+
+            // Get applist.
+            let req = await fetch(`https://hacking-with-ht.ml/homebase/apps.json`)
+            let body = await req.json()
+            localStorage.setItem(`apps`, JSON.stringify(body))
+
+            // Init applist logic.
+            functions.list()
+        }
+
+        // Funtions list for ease of usage.
+        let functions = {
+
+            // Reminder current day + tomorrow day logic.
+            reminders: _ => {
+                let [month, today, tmw] = [date => [`Jan`, `Feb`, `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, `Dec`][date.getMonth()], new Date(), new Date()]
+                tmw.setDate(new Date().getDate() + 1)
+
+                // Update UI.
+                document.getElementById(`rem-today`).innerHTML = `TODAY, ${month(today)} ${today.getDate().rank()}`
+                document.getElementById(`rem-tmw`).innerHTML = `TOMORROW, ${month(tmw)} ${tmw.getDate().rank()}`
+            },
+
+            // Gmail current day logic.
+            gmail: _ => {
+                document.getElementsByClassName(`emailDate`)[0].innerHTML = `${[`Jan`, `Feb`, `Mar`, `Apr`, `May`, `Jun`, `Jul`, `Aug`, `Sep`, `Oct`, `Nov`, `Dec`][new Date().getMonth()]} ${new Date().getDate().rank()}`
+            },
+
+            // Weather API with local caching.
+            weather: force => {
+                // Force new call even if other params are not met.
+                if (force) update()
+
+                // Get last cache time + currently stored data.
+                let [timer, data] = [localStorage.getItem(`weather-timer`), localStorage.getItem(`weather`)]
+                if (!timer || !data) update()
+
+                // Time todo.
+                if (new Date().getTime() - timer <= 1000 * 60 * 30) update(data)
+                else update()
+
+                // New request logic.
+                async function update(data, body) {
+                    // To fetch or not to fetch.
+                    if (data) body = JSON.parse(data)
+                    else {
+                        body = JSON.parse(localStorage.getItem(`dbdata`))
+                        let req = await fetch(`http://51.81.190.239:5674/weather?d=${body.weather.degree}&l=${encodeURI(body.weather.location)}`)
+                        body = await req.json()
+                        localStorage.setItem(`weather`, JSON.stringify(body))
+                        localStorage.setItem(`weather-timer`, new Date().getTime())
+                    }
+
+                    // Update UI.
+                    document.getElementsByClassName(`weatherPlace`)[0].innerHTML = body.weather[0].location.name
+                    document.getElementsByClassName(`weatherDate`)[0].innerHTML = body.weather[0].current.date
+                    document.getElementsByClassName(`weatherTemperature`)[0].innerHTML = `${body.weather[0].current.temperature}°F`
+                    document.getElementsByClassName(`weatherCondition`)[0].innerHTML = body.weather[0].current.skytext
+
+                    document.getElementsByClassName(`weatherIcon`)[0].innerHTML = `<i class=\"wi wi-yahoo-${body.weather[0].current.imageUrl.match(/\d*.gif/g)[0].replace(/.gif/g, ``)}\"></i>`
+
+                    // Month short formatter.
+                    let [month, date] = [
+                        index => {
+                            return [
+                                { month: `January`, short: `Jan` },
+                                { month: `February`, short: `Feb` },
+                                { month: `March`, short: `Mar` },
+                                { month: `April`, short: `Apr` },
+                                { month: `May`, short: `May` },
+                                { month: `June`, short: `Jun` },
+                                { month: `July`, short: `Jul` },
+                                { month: `August`, short: `Aug` },
+                                { month: `September`, short: `Sep` },
+                                { month: `October`, short: `Oct` },
+                                { month: `November`, short: `Nov` },
+                                { month: `December`, short: `Dec` }
+                            ][index - 1]
+                        },
+                        body.weather[0].current.date.split(`-`)
+                    ]
+
+                    // Update UI.
+                    document.getElementsByClassName(`weatherDate`)[0].innerHTML = `${parseInt(date[2]).rank()} ${month(parseInt(date[1])).short}`
+                }
+            },
+
+            // Contacts widget logic.
+            contacts: _ => {
+                let [currentSlide, slides, dots] = [0, document.querySelectorAll(`.contacts-container`), document.querySelectorAll(`.dots`)],
+                    init = n => {
+                        slides.forEach((slide) => {
+                            slide.style.display = `none`
+                            dots.forEach(dot => dot.classList.remove(`active`))
+                        })
+                        slides[n].style.display = `block`
+                        dots[n].classList.add(`active`)
+                    }
+                document.addEventListener(`DOMContentLoaded`, init(currentSlide))
+                dots.forEach((dots, index) => dots.addEventListener(`click`, _ => { init(index); currentSlide = i }))
+            },
+
+            // News API with local caching.
+            news: (force, articles = []) => {
+                // Force new call even if other params are not met.
+                if (force) update()
+
+                // Get last cache time + currently stored data.
+                let [timer, data] = [localStorage.getItem(`news-timer`), localStorage.getItem(`news`)]
+                if (!timer || !data) update()
+
+                // Time todo.
+                if (new Date().getTime() - timer <= 1000 * 60 * 30) update(data)
+                else update()
+
+                // New request logic.
+                async function update(data, body) {
+                    // To fetch or not to fetch.
+                    if (data) body = JSON.parse(data)
+                    else {
+                        let req = await fetch(`http://51.81.190.239:5674/news?s=google`)
+                        body = await req.json()
+                        localStorage.setItem(`news`, JSON.stringify(body))
+                        localStorage.setItem(`news-timer`, new Date().getTime())
+                    }
+
+                    // Append data.
+                    for (let query of body) for (let article of query.data) !article.content.startsWith(`<ol>`) ? articles.push(`<div class="news-container">${article.content}</div>`) : null
+
+                    // Update UI elements.
+                    document.getElementById(`articles`).innerHTML = articles.join(``)
+                    plusSlide(0)
+                }
+            },
+
+            // App list ranking logic.
+            list: async _ => {
+
+                // Get preset app list.
+                let [apps, applist] = [JSON.parse(localStorage.getItem(`apps`)), new Array()]
+
+                // Rank apps.
+                apps = rankify(apps)
+
+                // Append new app data.
+                for (let app of apps) applist.push(`<li id="${app.title}" class="app"><div class="container" onclick="record('${app.title}', '${app.link}')" title="You have visited this website ${app.hits} ${app.hits === 1 ? `time` : `times`}!"><img src="https://hacking-with-ht.ml/homebase/icons/${!app.title.includes(` `) ? app.title.toLowerCase() : app.title.split(` `)[0].toLowerCase() + app.title.split(` `).slice(1).join(``)}.png" class="image" alt="app" /><div class="overlay"><div class="text"> ${app.title} </div></div></div></li>`)
+                document.getElementById(`list`).innerHTML = applist.join(`\n`)
+
+                // Ranking logic.
+                function rankify(list) {
+                    let data = JSON.parse(localStorage.getItem(`dbdata`))
+                    if (data.applist.length > 0) {
+                        // Reorder list.
+                        data.applist.sort((a, b) => b.hits - a.hits)
+
+                        // For all with no data, set to 0.
+                        for (let app of list) {
+                            let dbObj = data.applist.find(obj => obj.name === app.title)
+                            app.hits = dbObj ? dbObj.hits : 0
+                        }
+
+                        // Return list.
+                        return list.sort((a, b) => b.hits - a.hits)
+                    } else {
+                        // If no app clicks, set all to 0.
+                        list.map(app => app.hits = 0)
+                        return list
+                    }
+                }
+            },
+
+            // Store/update notes widget.
+            notes: _ => {
+                let data = JSON.parse(localStorage.getItem(`dbdata-uncacheable`))
+                if (data.notes) document.getElementById(`note-information`).innerHTML = data.notes
+                else document.getElementById(`note-information`).innerHTML = `<h2>Notes</h2><p>Start Typing Here</p>`
+            },
+
+            // Set user's username on index page.
+            username: _ => document.getElementById(`profile`).innerHTML = `<em class="fas fa-user-circle"><span> ${localStorage.getItem(`username`)} </span></em>`
+        }
+
+        // Functions init.
+        functions.reminders()
+        functions.gmail()
+        functions.weather()
+        functions.contacts()
+        functions.news()
+        functions.notes()
+        functions.username()
+
+        // Weather icon extra properties.
+        let weatherIcon = document.getElementsByClassName(`wi`)
+
+        if (weatherIcon && weatherIcon[0]) {
+            weatherIcon[0].addEventListener(`click`, _ => window.open(`https://www.msn.com/en-us/weather`, `_blank`))
+            weatherIcon[0].title = `Click here to see more weather data`
+        }
+
+        // Contacts widget logic.
+        showSlide(slideInd)
+
+        function plusSlide(n) { showSlide(slideInd += n) }
+
+        function showSlide(n) {
+            let [slide, i] = [document.getElementsByClassName(`news-container`)]
+            if (n > slide.length) slideInd = 1
+            if (n < 1) slideInd = slide.length
+            for (i = 0; i < slide.length; i++) slide[i].style.display = `none`
+            if (slide[slideInd - 1]) slide[slideInd - 1].style.display = `block`
+        }
+
+        // Applist search logic.
+        function search() {
+            let [input, x] = [document.getElementById(`searchbar`).value.toLowerCase(), document.getElementsByClassName(`app`)]
+            for (let i = 0; i < x.length; i++) {
+                if (!x[i].id.toLowerCase().includes(input)) x[i].style.display = `none`
+                else x[i].style.display = `block`
+            }
+        }
+
+        // Record app clicks.
+        function record(title, link) {
+            let data = JSON.parse(localStorage.getItem(`dbdata`))
+            // Find app.
+            let app = data.applist.find(obj => obj.name === title)
+            // If no app data, add new entry.
+            if (!app) data.applist.push({ name: title, hits: 1 })
+            // Increment.
+            else app.hits++
+
+            // Set local cache.
+            localStorage.setItem(`dbdata`, JSON.stringify(data))
+            window.open(`https://${link}`, `_blank`)
+
+            // Update UI applist.
+            functions.list()
+        }
+
+        // Note update event (store to cache).
+        function noteUpdate() {
+            let note = document.getElementById(`note-information`)
+            if (note) {
+                let data = JSON.parse(localStorage.getItem(`dbdata`))
+                data.notes = note.innerHTML.trim() // Trim spaces.
+                localStorage.setItem(`dbdata`, JSON.stringify(data))
+            }
+        }
+
+        // Update database every 2 minutes (check if new data exists before update to keep API requests low).
+        setInterval(async _ => {
+            let data = JSON.parse(localStorage.getItem(`dbdata`))
+            if (JSON.stringify(data) !== localStorage.getItem(`dbdata-uncacheable`)) {
+                let copy = data
+                delete copy._id
+                await fetch(`http://51.81.190.239:5674/dbupdate`, {
+                    method: `POST`,
+                    body: JSON.stringify({ s: data.ips[0].query, d: copy }),
+                    headers: { "Content-Type": `application/json` },
+                }).catch(_ => { })
+                localStorage.setItem(`dbdata-uncacheable`, JSON.stringify(data))
+            }
+        }, 2 * 60 * 1000)
+
+        let mapHide = document.getElementById(`goBack`)
+
+        // Hide map logic.
+        mapHide.onclick = _ => {
+            Object.mergify(document.getElementById(`map`).style, { opacity: 0, pointerEvents: `none` })
+            Object.mergify(document.getElementById(`map-options`).style, { opacity: 0, pointerEvents: `none` })
+        }
+
+        // Map picker logic.
+        function enableMap() {
+            Object.mergify(document.getElementById(`map`).style, { opacity: 1, pointerEvents: `auto` })
+            Object.mergify(document.getElementById(`map-options`).style, { opacity: 1, pointerEvents: `auto` })
+
+            // Get element references
+            let [confirmBtn, onClickPositionView, map] = [document.getElementById(`confirmPosition`), document.getElementById(`onClickPositionView`), document.getElementById(`map`)]
+
+            let data = JSON.parse(localStorage.getItem(`dbdata`))
+
+            // Initialize LocationPicker plugin
+            var lp = new locationPicker(map, { lat: data.ips[0].lat, lng: data.ips[0].lon }, { zoom: 9 })
+
+            // Listen to button onclick event
+            confirmBtn.onclick = async _ => {
+                // Get current location and show it in HTML
+                var location = lp.getMarkerPosition()
+                let req = await fetch(`https://geocode.xyz/${location.lat},${location.lng}?geoit=json`)
+
+                let body = await req.json()
+
+                data.weather.location = `${body.osmtags.name}, ${body.state}, ${body.prov}`
+                localStorage.setItem(`dbdata`, JSON.stringify(data))
+                Object.mergify(document.getElementById(`map`).style, { opacity: 0, pointerEvents: `none` })
+                Object.mergify(document.getElementById(`map-options`).style, { opacity: 0, pointerEvents: `none` })
+                functions.weather(true)
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+<!-- This is protected code, see https://kura.gq?to=share for more information. -->
