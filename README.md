@@ -50,7 +50,7 @@ npm start
 ### File Structure
 All code files are under the main directory.
 
-The index/init file for the project is `./src/node/index.js`.
+The index/init file for the project is `./index.js`.
 Running `npm start` will run the application.
 
 ### Changes
