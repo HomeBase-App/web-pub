@@ -48,14 +48,7 @@ npm start
 ```
 
 ### File Structure
-All main code files are under the `./src` directory.
-```
-CSS                 :: ./src/css
-JS                  :: ./src/js
-HTML                :: ./src/html
-NODE.JS             :: ./src/node
-All other assets    :: ./src/data
-```
+All code files are under the main directory.
 
 The index/init file for the project is `./src/node/index.js`.
 Running `npm start` will run the application.
