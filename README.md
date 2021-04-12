@@ -68,7 +68,7 @@ EX: `main` on version `1.0.0`, new branch on version `1.0.1`.
 
 OR 
 
-Make a pull request with the code to be reivewed and merged.
+Make a pull request with the code to be reviewed and merged.
 
 ### Other
 License: `Apache 2.0`
