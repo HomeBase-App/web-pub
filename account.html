@@ -62,8 +62,6 @@
 
     <!-- CSS. -->
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Poiret+One);
-
         :root {
             --blue: #5e72e4;
             --indigo: #5603ad;
@@ -103,7 +101,11 @@
         *::before,
         *::after {
             box-sizing: border-box;
-            font-family: Poiret One;
+        }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #C0C0C0;
         }
 
         html {
@@ -2115,8 +2117,8 @@
                         </p>
                         <a class="btn btn-info" href="index.html" style="color: #F08080"> Back Home </a>
                         <a class="btn btn-info" onclick="editable()"> Edit profile </a>
-                        <a class="btn btn-info" onclick="clearCache()" title="Click here to clear cache"
-                            id="cache-time"></a>
+                        <!-- <a class="btn btn-info" onclick="clearCache()" title="Click here to clear cache"
+                            id="cache-time"></a> -->
                     </div>
                 </div>
             </div>
@@ -2184,7 +2186,7 @@
                         </div>
                         <hr class="my-4">
                         <!-- User location information + degrees. -->
-                        <h6 class="heading-small text-muted mb-4"> Contact information </h6>
+                        <h6 class="heading-small text-muted mb-4"> Location information </h6>
                         <div class="pl-lg-4">
                             <div class="row">
                                 <div class="col-lg-6">
