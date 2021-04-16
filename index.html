@@ -875,15 +875,49 @@
             color: #C0C0C0;
 
         }
+
+        #verify {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        #popup {
+            text-align: end;
+            margin-top: 50vh !important;
+            margin: auto;
+            padding: 10px;
+            border-radius: 15px;
+            width: max-content;
+            background: black;
+            height: 100px;
+            font-size: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+            filter: drop-shadow(0px 0px 5px #111111);
+        }
     </style>
 </head>
 
 <body>
     <!-- Preloader -->
-    <div id="waitload">
+    <!-- <div id="waitload">
         <div id="loader">
             <a> Welcome to HomeBase </a>
             <p> Starting Application </p>
+        </div>
+    </div> -->
+
+    <div id="verify">
+        <div id="popup">
+            <a>Hello There</a>
+            <br />
+            <button>Yes</button>
+            <button>No</button>
         </div>
     </div>
 
@@ -956,8 +990,8 @@
         <!-- Gmail widget. -->
         <div id="gml">
             <div class="gmail-topBar">
-                <a href="https://gmail.com/" target="_blank"><img src="https://hacking-with-ht.ml/homebase/extras/gmail.png"
-                        alt="Icon" /></a>
+                <a href="https://gmail.com/" target="_blank"><img
+                        src="https://hacking-with-ht.ml/homebase/extras/gmail.png" alt="Icon" /></a>
                 <h2> All Mail </h2>
                 <p> 72 unread </p>
                 <img src="https://hacking-with-ht.ml/homebase/extras/refresh.png" alt="Refresh" />
@@ -1054,7 +1088,7 @@
                 <!-- Title. -->
                 <h4> GOOGLE NEWS </h4>
             </div>
-            
+
             <!-- API placehoder. -->
             <div id="articles"></div>
 
