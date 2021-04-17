@@ -2095,7 +2095,7 @@
             <div class="container-fluid">
                 <!-- Logo. -->
                 <a class="h4 text-white text-uppercase d-none d-lg-inline-block" id="back-to-home"
-                    href="index.html"><img alt="HB" /></a>
+                    href="index.html?frame=banana"><img alt="HB" /></a>
             </div>
         </nav>
 
@@ -2115,7 +2115,7 @@
                             This is your profile page. Here you can access and manage your account information to create
                             a more personalized experience.
                         </p>
-                        <a class="btn btn-info" href="index.html" style="color: #F08080"> Back Home </a>
+                        <a class="btn btn-info" href="index.html?frame=banana" style="color: #F08080"> Back Home </a>
                         <a class="btn btn-info" onclick="editable()"> Edit profile </a>
                         <!-- <a class="btn btn-info" onclick="clearCache()" title="Click here to clear cache"
                             id="cache-time"></a> -->
@@ -2232,6 +2232,8 @@
 
         // Get database data.
         let data = JSON.parse(localStorage.getItem(`dbdata`))
+
+        if (!data) location.href = `./login.html?redir=account`
 
         // Set element ids/values.
         let [userData, elements] = [

@@ -59,12 +59,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="https://hacking-with-ht.ml/homebase/logo.png" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+
+    <script>
+        let userdata = localStorage.getItem(`dbdata`)
+
+        // If local data exists.
+        if (userdata) {
+
+            // Redirect to index.
+            location.href = `./index.html?frame=banana`
+
+            // Check if username is up to date.
+            if (!localStorage.getItem(`username`)) localStorage.setItem(`username`, JSON.parse(localStorage.getItem(`dbdata`)).username)
+        }
+    </script>
 
     <!-- CSS. -->
     <style>
         * {
             font-family: Arial, Helvetica, sans-serif;
         }
+
         body,
         html {
             margin: 0;
@@ -292,6 +308,12 @@
                     <br />
                     <br />
                     <input type="password" placeholder="Password" class="input-line full-width" id="password"></input>
+                    <input tabindex="-1" type="checkbox" onclick="showHide('password')"> Show Password </input>
+                    <br />
+                    <br />
+                    <input type="password" placeholder="Retype Password" class="input-line full-width"
+                        id="re-password"></input>
+                    <input tabindex="-1" type="checkbox" onclick="showHide('re-password')"> Show Password </input>
                 </div>
                 <br />
                 <br />
@@ -310,29 +332,33 @@
     <!-- Javascript. -->
     <script>
 
+        function showHide(id) { document.getElementById(id).type = document.getElementById(id).type === `password` ? `text` : `password` }
+
         // Username enter key event.
         document.getElementById(`username`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-init`).click() : null)
 
         // Password enter key event.
         document.getElementById(`password`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-init`).click() : null)
 
+        // Password enter key event.
+        document.getElementById(`re-password`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-init`).click() : null)
+
+
         // Init account login.
         let btn = document.getElementById(`account-init`)
         if (btn) {
             let userdata = localStorage.getItem(`dbdata`)
 
-            // If local data exists.
-            if (userdata) {
-
-                // Redirect to index.
-                location.href = `./index.html`
-
-                // Check if username is up to date.
-                if (!localStorage.getItem(`username`)) localStorage.setItem(`username`, JSON.parse(localStorage.getItem(`dbdata`)).username)
-            }
-
             // Account login click event.
             btn.addEventListener(`click`, async _ => {
+
+                if (document.getElementById(`password`).value !== document.getElementById(`re-password`).value) {
+                    document.getElementsByClassName(`subtitle`)[0].innerHTML = `Passwords do not match!`
+                    document.getElementsByClassName(`subtitle`)[0].style.backgroundColor = `red`
+                    document.getElementsByClassName(`subtitle`)[0].style.padding = `5px`
+                    document.getElementsByClassName(`subtitle`)[0].style.borderRadius = `5px`
+                    return
+                }
 
                 // Check if any values are missing.
                 if (!document.getElementById(`username`).value || !document.getElementById(`password`).value) {
@@ -381,8 +407,10 @@
                     localStorage.setItem(`dbdata-uncacheable`, JSON.stringify(body))
                     localStorage.setItem(`cache-time`, new Date().getTime())
 
+                    let url = new URL(window.location.href).searchParams
+
                     // Redirect.
-                    location.href = `./index.html`
+                    location.href = `./${url.get(`redir`) || `index`}.html?frame=banana`
                 } else {
 
                     // Invalid login details case.

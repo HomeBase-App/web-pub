@@ -65,6 +65,7 @@
         * {
             font-family: Arial, Helvetica, sans-serif;
         }
+
         body,
         html {
             margin: 0;
@@ -285,7 +286,7 @@
                 <!-- App name. -->
                 <div class="welcome"> HomeBase </div>
                 <!-- User notify. -->
-                <div class="subtitle"> Thank you for using our serivce! Please login below. </div>
+                <div class="subtitle"> Thank you for using our serivce! Sign up here. </div>
                 <!-- User input data. -->
                 <div class="input-fields">
                     <input type="text" placeholder="Username" class="input-line full-width" id="username"></input>
@@ -295,6 +296,7 @@
                     <br />
                     <br />
                     <input type="password" placeholder="Password" class="input-line full-width" id="password"></input>
+                    <input tabindex="-1" type="checkbox" onclick="showHide('password')"> Show Password </input>
                 </div>
                 <br />
                 <br />
@@ -310,6 +312,7 @@
 
     <!-- Javascript. -->
     <script>
+        function showHide(id) { document.getElementById(id).type = document.getElementById(id).type === `password` ? `text` : `password` }
 
         // Username enter key event.
         document.getElementById(`username`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-create`).click() : null)
