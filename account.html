@@ -59,44 +59,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="https://hacking-with-ht.ml/homebase/logo.png" />
+    <link rel="stylesheet" href="style.css">
 
     <!-- CSS. -->
     <style>
-        :root {
-            --blue: #5e72e4;
-            --indigo: #5603ad;
-            --purple: #8965e0;
-            --pink: #f3a4b5;
-            --red: #f5365c;
-            --orange: #fb6340;
-            --yellow: #ffd600;
-            --green: #2dce89;
-            --teal: #11cdef;
-            --cyan: #2bffc6;
-            --white: #fff;
-            --gray: #8898aa;
-            --gray-dark: #32325d;
-            --light: #ced4da;
-            --lighter: #e9ecef;
-            --primary: #5e72e4;
-            --secondary: #f7fafc;
-            --success: #2dce89;
-            --info: #11cdef;
-            --warning: #fb6340;
-            --danger: #f5365c;
-            --light: #adb5bd;
-            --dark: #212529;
-            --default: #172b4d;
-            --white: #fff;
-            --neutral: #fff;
-            --darker: black;
-            --breakpoint-xs: 0;
-            --breakpoint-sm: 576px;
-            --breakpoint-md: 768px;
-            --breakpoint-lg: 992px;
-            --breakpoint-xl: 1200px;
-        }
-
         *,
         *::before,
         *::after {
@@ -104,17 +70,15 @@
         }
 
         * {
-            font-family: Arial, Helvetica, sans-serif;
             color: #C0C0C0;
         }
 
         html {
-            font-family: sans-serif;
             line-height: 1.15;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
             -ms-overflow-style: scrollbar;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-tap-highlight-color: var(--black);
         }
 
         figcaption,
@@ -127,13 +91,12 @@
         }
 
         body {
-            font-family: Open Sans, sans-serif;
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5;
             margin: 0;
             text-align: left;
-            color: lightcoral;
+            color: var(--master);
             background-color: #f8f9fe;
             overflow-x: hidden;
         }
@@ -213,7 +176,6 @@
         }
 
         code {
-            font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
             font-size: 1em;
         }
 
@@ -227,7 +189,7 @@
             padding-bottom: 1rem;
             caption-side: bottom;
             text-align: left;
-            color: #2d2d31;
+            color: var(--dark-grey);
         }
 
         label {
@@ -247,7 +209,6 @@
         input,
         button,
         textarea {
-            font-family: inherit;
             font-size: inherit;
             line-height: inherit;
             margin: 0;
@@ -345,11 +306,10 @@
         .h4,
         .h5,
         .h6 {
-            font-family: inherit;
             font-weight: 600;
             line-height: 1.5;
             margin-bottom: .5rem;
-            color: lightcoral;
+            color: var(--master);
         }
 
         h1,
@@ -393,7 +353,7 @@
         code {
             font-size: 87.5%;
             word-break: break-word;
-            color: #f3a4b5;
+            color: var(--master);
         }
 
         a>code {
@@ -540,6 +500,24 @@
             }
         }
 
+        #input-degree {
+            font-size: 1rem;
+            line-height: 1.5;
+            display: block;
+            width: 100%;
+            height: calc(2.75rem + 2px);
+            padding: .625rem .75rem;
+            transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);
+            color: #2d2d31;
+            border: 1px solid #cad1d7;
+            border-radius: .375rem;
+            background-color: #fff;
+            background-clip: padding-box;
+            box-shadow: none;
+            outline: none;
+            border: 0px;
+        }
+
         .form-control {
             font-size: 1rem;
             line-height: 1.5;
@@ -557,46 +535,50 @@
         }
 
         @media screen and (prefers-reduced-motion: reduce) {
-            .form-control {
+
+            .form-control,
+            #input-degree {
                 transition: none;
             }
         }
 
-        .form-control::-ms-expand {
+        .form-control::-ms-expand,
+        #input-degree::-ms-expand {
             border: 0;
             background-color: transparent;
         }
 
-        .form-control:focus {
+        .form-control:focus,
+        #input-degree:focus {
             color: #2d2d31;
-            border-color: rgba(50, 151, 211, .25);
+            border-color: var(--dark-master);
             outline: 0;
-            background-color: #fff;
+            background-color: var(--white);
             box-shadow: none, none;
         }
 
-        .form-control:-ms-input-placeholder {
+        .form-control:-ms-input-placeholder,
+        #input-degree:-ms-input-placeholder {
             opacity: 1;
-            color: #adb5bd;
+            color: var(--grey);
         }
 
-        .form-control::-ms-input-placeholder {
+        .form-control::placeholder,
+        #input-degree::placeholder {
             opacity: 1;
-            color: #adb5bd;
-        }
-
-        .form-control::placeholder {
-            opacity: 1;
-            color: #adb5bd;
+            color: var(--grey);
         }
 
         .form-control:disabled,
-        .form-control[readonly] {
+        .form-control[readonly],
+        #input-degree:disabled,
+        #input-degree[readonly] {
             opacity: 1;
-            background-color: #e9ecef;
+            background-color: var(--grey);
         }
 
-        textarea.form-control {
+        textarea.form-control,
+        textarea#input-degree {
             height: auto;
         }
 
@@ -729,9 +711,9 @@
         }
 
         .btn-info:hover {
-            color: #fff;
-            border-color: #cc1400;
-            background-color: #cc1400;
+            color: var(--black) !important;
+            border-color: var(--grey);
+            background-color: var(--grey);
         }
 
         .btn-info:focus {
@@ -1432,11 +1414,7 @@
         }
 
         .bg-gradient-default {
-            background: linear-gradient(87deg, #fc4848 0, #f08080 100%) !important;
-        }
-
-        .bg-gradient-default {
-            background: linear-gradient(87deg, #fc4848 0, #f08080 100%) !important;
+            background: linear-gradient(87deg, #4E5D94 0, #7289DA 100%) !important;
         }
 
         @keyframes floating-lg {
@@ -1707,19 +1685,18 @@
             color: #525f7f;
         }
 
-        .form-control {
+        .form-control,
+        #input-degree {
             font-size: .875rem;
         }
 
-        .form-control:focus:-ms-input-placeholder {
+        .form-control:focus:-ms-input-placeholder,
+        #input-degree:focus:-ms-input-placeholder {
             color: #adb5bd;
         }
 
-        .form-control:focus::-ms-input-placeholder {
-            color: #adb5bd;
-        }
-
-        .form-control:focus::placeholder {
+        .form-control:focus::placeholder,
+        #input-degree:focus::placeholder {
             color: #adb5bd;
         }
 
@@ -1739,13 +1716,15 @@
             resize: horizontal !important;
         }
 
-        .form-control-alternative {
+        .form-control-alternative,
+        #input-degree {
             transition: box-shadow .15s ease;
             border: 0;
             box-shadow: 0 1px 3px rgba(50, 50, 93, .15), 0 1px 0 rgba(0, 0, 0, .02);
         }
 
-        .form-control-alternative:focus {
+        .form-control-alternative:focus,
+        #input-degree:focus {
             box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
         }
 
@@ -1755,7 +1734,8 @@
             box-shadow: none;
         }
 
-        .input-group .form-control {
+        .input-group .form-control,
+        .input-group #input-degree {
             box-shadow: none;
         }
 
@@ -2085,6 +2065,11 @@
             max-width: 70px;
             filter: drop-shadow(0px 0px 3px black);
         }
+
+        .hidden {
+            visibility: hidden;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -2115,10 +2100,9 @@
                             This is your profile page. Here you can access and manage your account information to create
                             a more personalized experience.
                         </p>
-                        <a class="btn btn-info" href="index.html?frame=banana" style="color: #F08080"> Back Home </a>
-                        <a class="btn btn-info" onclick="editable()"> Edit profile </a>
-                        <!-- <a class="btn btn-info" onclick="clearCache()" title="Click here to clear cache"
-                            id="cache-time"></a> -->
+                        <a class="btn btn-info" href="index.html?frame=banana" style="color: var(--master)">
+                            Back Home
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2132,16 +2116,6 @@
                         <div class="col-8">
                             <!-- User account tab / notifier. -->
                             <h3 class="mb-0"> My account </h3>
-                        </div>
-                        <div class="col-4 text-right">
-                            <!-- Reset user cache verify. -->
-                            <a class="btn btn-sm btn-primary" onclick="reset()"
-                                style="float: left; position: inherit; z-index: -10;" id="cache-yes"> Yes </a>
-                            <!-- Reset user cache deny. -->
-                            <a class="btn btn-sm btn-primary" onclick="hide()"
-                                style="float: left; position: inherit; z-index: -10;" id="cache-no"> No </a>
-                            <!-- Save user data. -->
-                            <a class="btn btn-sm btn-primary" onclick="combine()"> Save </a>
                         </div>
                     </div>
                 </div>
@@ -2192,13 +2166,16 @@
                                 <div class="col-lg-6">
                                     <div class="form-group focused">
                                         <label class="form-control-label" for="input-degree"> Degree </label>
-                                        <input type="text" id="input-degree"
-                                            class="form-control form-control-alternative" placeholder="C">
+                                        <select name="degrees" id="input-degree" disabled>
+                                            <option value="F">Fahrenheit (F)</option>
+                                            <option value="C">Celsius (C)</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="input-region"> Region name </label>
+                                        <label class="form-control-label" for="input-region"> State/Providence name
+                                        </label>
                                         <input type="email" id="input-region"
                                             class="form-control form-control-alternative" placeholder="Texas">
                                     </div>
@@ -2221,6 +2198,8 @@
                                 </div>
                             </div>
                         </div>
+                        <a class="btn btn-info" onclick="editable()"> Edit profile </a>
+                        <a class="btn btn-info hidden save" onclick="combine()"> Save </a>
                     </form>
                 </div>
             </div>
@@ -2266,10 +2245,16 @@
         for (let element of elements) element.readOnly = !element.readOnly
 
         // Make elements readable.
-        function editable() { for (let element of elements) element.readOnly = false }
+        function editable() {
+            for (let element of elements) element.readOnly = false
+            document.getElementsByClassName(`save`)[0].classList.remove(`hidden`)
+            document.getElementById(`input-degree`).removeAttribute(`disabled`)
+        }
 
         // Combine new data and update database.
         function combine() {
+            document.getElementsByClassName(`save`)[0].classList.add(`hidden`)
+            document.getElementById(`input-degree`).setAttribute(`disabled`, `disabled`)
             for (let element of elements) element.readOnly = true
             data.username = elements[0].value
             data.email = elements[1].value
@@ -2309,56 +2294,56 @@
             localStorage.setItem(`username`, newdata.username)
         }
 
-        // Get cache last updated.
-        let cacheStart = localStorage.getItem(`cache-time`)
+        // // Get cache last updated.
+        // let cacheStart = localStorage.getItem(`cache-time`)
 
-        // Set cache time log.
-        document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`
+        // // Set cache time log.
+        // document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`
 
-        // Update cache time log every second.
-        setInterval(_ => document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`, 1000)
+        // // Update cache time log every second.
+        // setInterval(_ => document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`, 1000)
 
-        // Cache timer logic.
-        function cacheTime(duration) {
-            let secs = duration / 1000, sec_num = parseInt(secs, 10), hours = Math.floor(sec_num / 3600), minutes = Math.floor((sec_num - (hours * 3600)) / 60), seconds = sec_num - (hours * 3600) - (minutes * 60)
-            return `${parseInt(hours) > 0 ? `${hours.toLocaleString()} Hr${parseInt(hours) !== 1 ? `s` : ``}${parseInt(minutes) > 0 ? `, ` : ``}` : ``}${parseInt(minutes) > 0 ? `${minutes.toLocaleString()} Min${parseInt(minutes) !== 1 ? `s` : ``}${parseInt(seconds) > 0 ? `, ` : ``}` : ``}${parseInt(seconds) > 0 ? `${seconds.toLocaleString()} Sec${parseInt(seconds) !== 1 ? `s` : ``}` : ``}`
-        }
+        // // Cache timer logic.
+        // function cacheTime(duration) {
+        //     let secs = duration / 1000, sec_num = parseInt(secs, 10), hours = Math.floor(sec_num / 3600), minutes = Math.floor((sec_num - (hours * 3600)) / 60), seconds = sec_num - (hours * 3600) - (minutes * 60)
+        //     return `${parseInt(hours) > 0 ? `${hours.toLocaleString()} Hr${parseInt(hours) !== 1 ? `s` : ``}${parseInt(minutes) > 0 ? `, ` : ``}` : ``}${parseInt(minutes) > 0 ? `${minutes.toLocaleString()} Min${parseInt(minutes) !== 1 ? `s` : ``}${parseInt(seconds) > 0 ? `, ` : ``}` : ``}${parseInt(seconds) > 0 ? `${seconds.toLocaleString()} Sec${parseInt(seconds) !== 1 ? `s` : ``}` : ``}`
+        // }
 
-        // Clear cache verification.
-        function clearCache() {
-            document.getElementsByClassName(`mb-0`)[0].innerHTML = `Are you sure you want to reset site data? You WILL be logged out!`
-            document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `red`
-            document.getElementsByClassName(`mb-0`)[0].style.padding = `5px`
-            document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `10px`
-            document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `5px`
-            document.getElementById(`cache-yes`).style.zIndex = "1"
-            document.getElementById(`cache-no`).style.zIndex = "1"
-        }
+        // // Clear cache verification.
+        // function clearCache() {
+        //     document.getElementsByClassName(`mb-0`)[0].innerHTML = `Are you sure you want to reset site data? You WILL be logged out!`
+        //     document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `red`
+        //     document.getElementsByClassName(`mb-0`)[0].style.padding = `5px`
+        //     document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `10px`
+        //     document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `5px`
+        //     document.getElementById(`cache-yes`).style.zIndex = "1"
+        //     document.getElementById(`cache-no`).style.zIndex = "1"
+        // }
 
-        // Hide if cache clear deny.
-        function hide() {
-            document.getElementsByClassName(`mb-0`)[0].innerHTML = `My account`
-            document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `transparent`
-            document.getElementsByClassName(`mb-0`)[0].style.padding = `0px`
-            document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `0px`
-            document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `0px`
-            document.getElementById(`cache-yes`).style.zIndex = "-1"
-            document.getElementById(`cache-no`).style.zIndex = "-1"
-        }
+        // // Hide if cache clear deny.
+        // function hide() {
+        //     document.getElementsByClassName(`mb-0`)[0].innerHTML = `My account`
+        //     document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `transparent`
+        //     document.getElementsByClassName(`mb-0`)[0].style.padding = `0px`
+        //     document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `0px`
+        //     document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `0px`
+        //     document.getElementById(`cache-yes`).style.zIndex = "-1"
+        //     document.getElementById(`cache-no`).style.zIndex = "-1"
+        // }
 
-        // Continue if cache clear verify.
-        function reset() {
-            localStorage.removeItem(`dbdata`)
-            localStorage.removeItem(`dbdata-uncacheable`)
-            localStorage.removeItem(`cache-time`)
-            localStorage.removeItem(`username`)
-            localStorage.removeItem(`weather`)
-            localStorage.removeItem(`weather-timer`)
-            localStorage.removeItem(`news`)
-            localStorage.removeItem(`news-timer`)
-            localStorage.removeItem(`apps`)
-            location.href = `login.html`
-        }
+        // // Continue if cache clear verify.
+        // function reset() {
+        //     localStorage.removeItem(`dbdata`)
+        //     localStorage.removeItem(`dbdata-uncacheable`)
+        //     localStorage.removeItem(`cache-time`)
+        //     localStorage.removeItem(`username`)
+        //     localStorage.removeItem(`weather`)
+        //     localStorage.removeItem(`weather-timer`)
+        //     localStorage.removeItem(`news`)
+        //     localStorage.removeItem(`news-timer`)
+        //     localStorage.removeItem(`apps`)
+        //     location.href = `login.html`
+        // }
     </script>
 </body>
 
