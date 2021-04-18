@@ -2070,6 +2070,27 @@
             visibility: hidden;
             pointer-events: none;
         }
+
+        .grey {
+            opacity: 0.7;
+            text-decoration: none;
+            color: var(--grey) !important;
+            border-color: var(--black);
+            background-color: var(--black);
+            cursor: not-allowed;
+        }
+
+        .grey:hover {
+            text-decoration: none;
+            color: var(--grey) !important;
+            border-color: var(--black);
+            background-color: var(--black);
+            cursor: not-allowed;
+        }
+
+        .family-email:not(:first-child) {
+            margin-top: 15px;
+        }
     </style>
 </head>
 
@@ -2158,7 +2179,7 @@
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-4">
+                        <!-- <hr class="my-4"> -->
                         <!-- User location information + degrees. -->
                         <h6 class="heading-small text-muted mb-4"> Location information </h6>
                         <div class="pl-lg-4">
@@ -2200,6 +2221,24 @@
                         </div>
                         <a class="btn btn-info" onclick="editable()"> Edit profile </a>
                         <a class="btn btn-info hidden save" onclick="combine()"> Save </a>
+                        <hr class="my-4">
+                        <!-- User account information. -->
+                        <h6 class="heading-small text-muted mb-4"> Account information </h6>
+                        <div class="pl-lg-4">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group" id="family-emails">
+                                        <label class="form-control-label" for="family-emails"> Family emails </label>
+                                        <div id="email-list">
+                                        </div>
+                                        <br />
+                                        <a class="btn btn-info family-add grey"> Add </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-info" onclick="editableE()"> Edit email list </a>
+                        <a class="btn btn-info hidden saveE" onclick="combineE()"> Save </a>
                     </form>
                 </div>
             </div>
@@ -2210,7 +2249,29 @@
     <script>
 
         // Get database data.
-        let data = JSON.parse(localStorage.getItem(`dbdata`))
+        let [data, obj, emailGrey] = [JSON.parse(localStorage.getItem(`dbdata`)), {}, true]
+
+        for (let i = 0; i < data.family.length; i++) obj[i] = data.family[i]
+
+        emailList(obj, emailGrey)
+
+        function emailList(list, grey) {
+            document.getElementById(`email-list`).innerHTML = ``
+            let keys = Object.keys(list)
+            for (let key of keys) document.getElementById(`email-list`).innerHTML += `<div class="family-email"><input ${grey ? `readOnly="true"` : ``} type="email" id="input-email" onkeyup="updateE('${key}')" class="form-control form-control-alternative family-email-box" placeholder="example@home-base.gq" value="${list[key]}" style="width: 90%; display: inline"><a class="btn btn-info cross-grey ${grey ? `grey` : ``}" onclick="remList('${key}')" style="margin-left: 10px;"> X </a></div>`
+        }
+
+        function remList(id) {
+            if (emailGrey) return
+            delete obj[id]
+            let [array, newObj] = [new Array(), {}]
+            Object.keys(obj).forEach(key => array.push(obj[key]))
+            for (let i = 0; i < array.length; i++) newObj[i] = array[i]
+            obj = newObj
+            emailList(obj, emailGrey)
+        }
+
+        function updateE(id) { obj[id] = document.getElementsByClassName(`family-email-box`)[id].value }
 
         if (!data) location.href = `./login.html?redir=account`
 
@@ -2251,6 +2312,61 @@
             document.getElementById(`input-degree`).removeAttribute(`disabled`)
         }
 
+        function editableE() {
+            emailGrey = false
+            let ememets = document.getElementsByClassName(`family-email-box`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].readOnly = false
+            }
+            ememets = document.getElementsByClassName(`cross-grey`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].classList.remove(`grey`)
+            }
+            document.getElementsByClassName(`family-add`)[0].classList.remove(`grey`)
+            document.getElementsByClassName(`saveE`)[0].classList.remove(`hidden`)
+        }
+
+        function combineE() {
+            let fail = validate()
+            if (fail) return
+            let [elements, list] = [document.getElementsByClassName(`family-email-box`), new Array()]
+            for (let i = 0; i < elements.length; i++) if (elements[i].value) list.push(elements[i].value)
+            data.family = list
+            emailGrey = true
+            let ememets = document.getElementsByClassName(`family-email-box`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].readOnly = true
+            }
+            ememets = document.getElementsByClassName(`cross-grey`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].classList.add(`grey`)
+            }
+            document.getElementsByClassName(`family-add`)[0].classList.add(`grey`)
+            document.getElementsByClassName(`saveE`)[0].classList.add(`hidden`)
+            let newObj = {}
+            for (let i = 0; i < data.family.length; i++) newObj[i] = data.family[i]
+            obj = newObj
+            emailList(obj, emailGrey)
+
+            update(data)
+
+            function validate() {
+                let elements = document.getElementsByClassName(`family-email-box`)
+                for (let i = 0; i < elements.length; i++) {
+                    if (!elements[i].value.match(/^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/g) && elements[i].value !== ``) {
+                        elements[i].title = `Not a valid email format`
+                        elements[i].style.background = `#CC1400`
+                        elements[i].style.color = `var(--white)`
+                        return true
+                    } else {
+                        elements[i].title = ``
+                        elements[i].style.background = `#FFF`
+                        elements[i].style.color = `#2d2d31`
+                    }
+                }
+            }
+        }
+
         // Combine new data and update database.
         function combine() {
             document.getElementsByClassName(`save`)[0].classList.add(`hidden`)
@@ -2278,72 +2394,17 @@
 
             let res = await post.json()
 
-            // If custom response, send notification.
-            if (res.code === `500`) {
-                let data = JSON.parse(localStorage.getItem(`dbdata`))
-                newdata.email = data.email
-                document.getElementsByClassName(`mb-0`)[0].innerHTML = res.data
-                document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `red`
-                document.getElementsByClassName(`mb-0`)[0].style.padding = `5px`
-                document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `10px`
-                document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `5px`
-            }
-
             // Set local data.
             localStorage.setItem(`dbdata`, JSON.stringify(newdata))
             localStorage.setItem(`username`, newdata.username)
         }
 
-        // // Get cache last updated.
-        // let cacheStart = localStorage.getItem(`cache-time`)
 
-        // // Set cache time log.
-        // document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`
-
-        // // Update cache time log every second.
-        // setInterval(_ => document.getElementById(`cache-time`).innerHTML = `Data last updated: ${cacheTime(new Date().getTime() - cacheStart)} ago`, 1000)
-
-        // // Cache timer logic.
-        // function cacheTime(duration) {
-        //     let secs = duration / 1000, sec_num = parseInt(secs, 10), hours = Math.floor(sec_num / 3600), minutes = Math.floor((sec_num - (hours * 3600)) / 60), seconds = sec_num - (hours * 3600) - (minutes * 60)
-        //     return `${parseInt(hours) > 0 ? `${hours.toLocaleString()} Hr${parseInt(hours) !== 1 ? `s` : ``}${parseInt(minutes) > 0 ? `, ` : ``}` : ``}${parseInt(minutes) > 0 ? `${minutes.toLocaleString()} Min${parseInt(minutes) !== 1 ? `s` : ``}${parseInt(seconds) > 0 ? `, ` : ``}` : ``}${parseInt(seconds) > 0 ? `${seconds.toLocaleString()} Sec${parseInt(seconds) !== 1 ? `s` : ``}` : ``}`
-        // }
-
-        // // Clear cache verification.
-        // function clearCache() {
-        //     document.getElementsByClassName(`mb-0`)[0].innerHTML = `Are you sure you want to reset site data? You WILL be logged out!`
-        //     document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `red`
-        //     document.getElementsByClassName(`mb-0`)[0].style.padding = `5px`
-        //     document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `10px`
-        //     document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `5px`
-        //     document.getElementById(`cache-yes`).style.zIndex = "1"
-        //     document.getElementById(`cache-no`).style.zIndex = "1"
-        // }
-
-        // // Hide if cache clear deny.
-        // function hide() {
-        //     document.getElementsByClassName(`mb-0`)[0].innerHTML = `My account`
-        //     document.getElementsByClassName(`mb-0`)[0].style.backgroundColor = `transparent`
-        //     document.getElementsByClassName(`mb-0`)[0].style.padding = `0px`
-        //     document.getElementsByClassName(`mb-0`)[0].style.paddingLeft = `0px`
-        //     document.getElementsByClassName(`mb-0`)[0].style.borderRadius = `0px`
-        //     document.getElementById(`cache-yes`).style.zIndex = "-1"
-        //     document.getElementById(`cache-no`).style.zIndex = "-1"
-        // }
-
-        // // Continue if cache clear verify.
-        // function reset() {
-        //     localStorage.removeItem(`dbdata`)
-        //     localStorage.removeItem(`dbdata-uncacheable`)
-        //     localStorage.removeItem(`cache-time`)
-        //     localStorage.removeItem(`username`)
-        //     localStorage.removeItem(`weather`)
-        //     localStorage.removeItem(`weather-timer`)
-        //     localStorage.removeItem(`news`)
-        //     localStorage.removeItem(`news-timer`)
-        //     localStorage.removeItem(`apps`)
-        //     location.href = `login.html`
-        // }
+        document.getElementsByClassName(`family-add`)[0].addEventListener(`click`, async _ => {
+            let len = Object.keys(obj).length
+            obj[len + 1] = ``
+            emailList(obj, emailGrey)
+        })
     </script>
 </body>
 
