@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
+:root {
+    --black: #111111;
+    --white: #FEFEFE;
+    --master: #7289DA;
+    --grey: #A9A9A9;
+    --dark-master: #4E5D94;
+    --dark-grey: #383838;
+    --blur: 0.4px;
+    --font: 'Open Sans', sans-serif;
+    --logo-main: #E3839B;
+    --logo-back: #47354D;
+}
+
+* {
+    font-family: var(--font);
+}
