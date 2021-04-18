@@ -2388,7 +2388,7 @@
             // Post changes.
             let post = await fetch(`http://51.81.190.239:5674/dbupdate`, {
                 method: `POST`,
-                body: JSON.stringify({ s: data.ips[0].query, d: newdata }),
+                body: JSON.stringify({ s: { e: data.email, u: data.username }, d: newdata }),
                 headers: { "Content-Type": `application/json` },
             })
 
