@@ -359,7 +359,7 @@
 
         .widget .widget-title,
         .widget .widget-title a {
-            font-size: .75rem;
+            font-size: .90rem;
             color: white;
             text-align: initial;
         }
@@ -371,9 +371,9 @@
 
         .widget-desc,
         .widget-desc a {
-            font-size: .6875rem;
+            font-size: .85rem;
             line-height: 1rem;
-            color: #ff4934;
+            color: lightcoral;
             font-weight: 500;
             text-align: initial;
             margin-top: 2px;
@@ -464,6 +464,7 @@
         #gml .gmailContent .emailDate {
             position: fixed;
             margin: 10px;
+            margin-left: 400px;
             font-size: 20px;
             white-space: nowrap;
         }
@@ -473,8 +474,9 @@
             flex-direction: column;
             font-size: 20px !important;
             position: relative;
-            text-align: end;
-            margin-left: -20px;
+            text-align:left;
+            margin-left: 20px;
+            margin-top: 10px;
             font-size: 25px;
         }
 
@@ -1049,14 +1051,14 @@
                         <!-- Today date. -->
                         <div class="widget-reminder-header" id="rem-today"> ••• </div>
                         <div class="widget-reminder-container">
-                            <div class="widget-reminder-time"> 09:00 </div>
+                            <div class="widget-reminder-time"> 09:00 AM</div>
                             <div class="widget-reminder-divider bg-success"></div>
                             <div class="widget-reminder-content">
                                 <h4 class="widget-title"> Need To Take Medication </h4>
                             </div>
                         </div>
                         <div class="widget-reminder-container">
-                            <div class="widget-reminder-time"> 20:00 <br /> 21:00 </div>
+                            <div class="widget-reminder-time"> 3:30 PM<br /> 5:00 PM</div>
                             <div class="widget-reminder-divider bg-primary"></div>
                             <div class="widget-reminder-content">
                                 <h4 class="widget-title"> Doctor's Appointment </h4>
@@ -1070,10 +1072,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Tomorrow date. -->
-                        <div class="widget-reminder-header" id="rem-tmw"> ••• </div>
                         <div class="widget-reminder-container">
-                            <div class="widget-reminder-time"> All day </div>
+                            <div class="widget-reminder-time"> 10:00 PM </div>
                             <div class="widget-reminder-divider bg-purple"></div>
                             <div class="widget-reminder-content">
                                 <h4 class="widget-title"><em class="fa fa-gift text-purple"></em> Josh's Birthday </h4>
@@ -1287,7 +1287,6 @@
 
                 // Update UI.
                 document.getElementById(`rem-today`).innerHTML = `TODAY, ${month(today)} ${today.getDate().rank()}`
-                document.getElementById(`rem-tmw`).innerHTML = `TOMORROW, ${month(tmw)} ${tmw.getDate().rank()}`
             },
 
             // Gmail current day logic.
