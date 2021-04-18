@@ -59,7 +59,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="icon" href="https://hacking-with-ht.ml/homebase/logo.png" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
 
     <script>
         let userdata = localStorage.getItem(`dbdata`)
@@ -68,7 +67,7 @@
         if (userdata) {
 
             // Redirect to index.
-            location.href = `./index.html?frame=banana`
+            location.href = `./index.html`
 
             // Check if username is up to date.
             if (!localStorage.getItem(`username`)) localStorage.setItem(`username`, JSON.parse(localStorage.getItem(`dbdata`)).username)
@@ -195,7 +194,6 @@
             -webkit-justify-content: center;
             -ms-flex-pack: center;
             justify-content: center;
-            background: #eee;
             height: 100%;
         }
 
@@ -261,19 +259,6 @@
             z-index: 1;
         }
 
-        .bold-line {
-            background: #e7e7e7;
-            position: absolute;
-            top: 0px;
-            bottom: 0px;
-            margin: auto;
-            width: 100%;
-            height: 360px;
-            z-index: 1;
-            opacity: 0.1;
-            background-size: cover;
-        }
-
         @media (max-width: 500px) {
             .window {
                 width: 100%;
@@ -290,8 +275,6 @@
 </head>
 
 <body>
-    <div class="bold-line"></div>
-
     <!-- Content container. -->
     <div class="container">
         <div class="window">
