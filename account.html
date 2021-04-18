@@ -1432,13 +1432,8 @@
         }
 
         .bg-gradient-default {
-            background: linear-gradient(87deg, #fc4848 0, #f08080 100%) !important;
+            background: linear-gradient(87deg, #4e5d94 0, #7289da 100%) !important;
         }
-
-        .bg-gradient-default {
-            background: linear-gradient(87deg, #fc4848 0, #f08080 100%) !important;
-        }
-
         @keyframes floating-lg {
             0% {
                 transform: translateY(0px);
@@ -1481,7 +1476,7 @@
             }
         }
 
-        .opacity-8 {
+        }.opacity-8 {
             opacity: .8 !important;
         }
 
@@ -2115,8 +2110,7 @@
                             This is your profile page. Here you can access and manage your account information to create
                             a more personalized experience.
                         </p>
-                        <a class="btn btn-info" href="index.html?frame=banana" style="color: #F08080"> Back Home </a>
-                        <a class="btn btn-info" onclick="editable()"> Edit profile </a>
+                        <a class="btn btn-info" href="index.html?frame=banana" style="color: #F08080"> Back Home </a>                        
                         <!-- <a class="btn btn-info" onclick="clearCache()" title="Click here to clear cache"
                             id="cache-time"></a> -->
                     </div>
@@ -2132,16 +2126,6 @@
                         <div class="col-8">
                             <!-- User account tab / notifier. -->
                             <h3 class="mb-0"> My account </h3>
-                        </div>
-                        <div class="col-4 text-right">
-                            <!-- Reset user cache verify. -->
-                            <a class="btn btn-sm btn-primary" onclick="reset()"
-                                style="float: left; position: inherit; z-index: -10;" id="cache-yes"> Yes </a>
-                            <!-- Reset user cache deny. -->
-                            <a class="btn btn-sm btn-primary" onclick="hide()"
-                                style="float: left; position: inherit; z-index: -10;" id="cache-no"> No </a>
-                            <!-- Save user data. -->
-                            <a class="btn btn-sm btn-primary" onclick="combine()"> Save </a>
                         </div>
                     </div>
                 </div>
@@ -2221,6 +2205,7 @@
                                 </div>
                             </div>
                         </div>
+                        <a class="btn btn-info" onclick="editable()"> Edit profile </a>
                     </form>
                 </div>
             </div>
