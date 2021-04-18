@@ -59,7 +59,7 @@ module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
   // Make app fullscreen.
   window.maximize()
 
-  window.removeMenu()
+  // window.removeMenu()
 
   // Load index HTML file.
   window.loadFile(`./login.html`)
