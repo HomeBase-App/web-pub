@@ -597,46 +597,61 @@
 
         #cts .contacts-container {
             position: relative;
+            margin-top: -20px;
             display: none;
-            color: white;
+        }
+
+        #cts .contacts-container p label{
+            max-height: 6px;
+            max-width: 25px;
+            position: fixed;
+            left:20px;
+            top: 75px;
+            color: var(--master);
+            align-items: center;
         }
 
         #cts .contacts-container img {
             position: absolute;
-            margin-top: 30px;
-            margin-left: 30px;
+            margin-top: 50px;
+            margin-left: 4px;
             max-height: 130px;
             display: block;
             border-radius: 10px;
+            z-index: -1;
         }
 
-        #cts .contacts-container .contactName {
+        #cts .contacts-container #contactName {
             position: absolute;
-            margin-top: 35px;
-            margin-left: 180px;
-            font-size: 48px;
+            margin-top: 40px;
+            max-width: 56%;
+            font-size: 37px;
             font-weight: 400px;
+            color: var(--grey);
         }
 
-        #cts .contacts-container .contactNumber {
+        #cts .contacts-container #contactNumber {
             position: absolute;
-            margin-top: 95px;
-            margin-left: 180px;
+            max-width: 39%;
             font-size: 20px;
             font-weight: 200px;
+            color: var(--grey);
         }
 
-        #cts .contacts-container .contactEmail {
+        #cts .contacts-container #contactEmail {
             position: absolute;
-            margin-top: 120px;
-            margin-left: 180px;
+            margin-top: 146px;
+            margin-left: 150px;
+            max-width: 60%;
             font-size: 20px;
             font-weight: 200px;
+            color: var(--grey);
         }
 
         .dots {
             position: relative;
             margin: 0 5px;
+            left: 45px;
             cursor: pointer;
             height: 15px;
             width: 15px;
@@ -649,6 +664,263 @@
         .active,
         .dots:hover {
             background-color: #CC1400;
+        }
+
+        .form-control {
+            font-size: 1rem;
+            line-height: 1.5;
+            display: block;
+            width: 55%;
+            transition: all .2s cubic-bezier(.68, -.55, .265, 1.55);
+            color: white;
+            border-radius: .375rem;
+            background-color: #2d2d31;
+            background-clip: padding-box;
+            position: absolute;
+            margin-top: 110px;
+            margin-left: 150px;
+        }
+
+        @media screen and (prefers-reduced-motion: reduce) {
+
+            .form-control,
+            #input-degree {
+                transition: none;
+            }
+        }
+
+        .form-control::-ms-expand,
+        #input-degree::-ms-expand {
+            border: 0;
+            background-color: transparent;
+        }
+
+        .form-control:focus,
+        #input-degree:focus {
+            color: #2d2d31;
+            outline: 0;
+            background-color: var(--white);
+            box-shadow: none, none;
+        }
+
+        .form-control:-ms-input-placeholder,
+        #input-degree:-ms-input-placeholder {
+            opacity: 1;
+            color: var(--white);
+        }
+
+        .form-control::placeholder,
+        #input-degree::placeholder {
+            opacity: 1;
+            color: var(--white);
+        }
+
+        .form-control:disabled,
+        .form-control[readonly],
+        #input-degree:disabled,
+        #input-degree[readonly] {
+            opacity: 1;
+            background-color: var(--grey);
+        }
+
+        textarea.form-control,
+        textarea#input-degree {
+            height: auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-inline {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+        }
+
+        @media (min-width: 576px) {
+            .form-inline label {
+                display: flex;
+                margin-bottom: 0;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .form-inline .form-group {
+                display: flex;
+                margin-bottom: 0;
+                flex: 0 0 auto;
+                flex-flow: row wrap;
+                align-items: center;
+            }
+
+            .form-inline .form-control {
+                display: inline-block;
+                width: auto;
+                vertical-align: middle;
+            }
+
+            .form-inline .input-group {
+                width: auto;
+            }
+        }
+
+        .btn {
+            font-size: 1rem;
+            font-weight: 600;
+            display: inline-block;
+            padding: .625rem 1.25rem;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            border-radius: .375rem;
+            margin-top: -78px;
+            margin-left: -350px;
+        }
+
+        @media screen and (prefers-reduced-motion: reduce) {
+            .btn {
+                transition: none;
+            }
+        }
+
+        .btn:hover,
+        .btn:focus {
+            text-decoration: none;
+        }
+
+        .btn:focus {
+            outline: 0;
+            box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08);
+        }
+
+        .btn:disabled {
+            opacity: .65;
+            box-shadow: none;
+        }
+
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        .btn:not(:disabled):not(.disabled):active {
+            box-shadow: none;
+        }
+
+        .btn:not(:disabled):not(.disabled):active:focus {
+            box-shadow: 0 7px 14px rgba(50, 50, 93, .1), 0 3px 6px rgba(0, 0, 0, .08), none;
+        }
+
+        .btn-primary {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+        }
+
+        .btn-primary:hover {
+            color: #fff;
+            border-color: #cc1400;
+            background-color: #cc1400;
+        }
+
+        .btn-primary:focus {
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(94, 114, 228, .5);
+        }
+
+        .btn-primary:disabled {
+            color: #fff;
+            border-color: #5e72e4;
+            background-color: #5e72e4;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #cc1400;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none, 0 0 0 0 rgba(94, 114, 228, .5);
+        }
+
+        .btn-info {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+        }
+
+        .btn-info:hover {
+            color: var(--black) !important;
+            border-color: var(--grey);
+            background-color: var(--grey);
+        }
+
+        .btn-info:focus {
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(17, 205, 239, .5);
+        }
+
+        .btn-info:disabled {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+        }
+
+        .btn-info:not(:disabled):not(.disabled):active {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #44444b;
+        }
+
+        .btn-info:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none, 0 0 0 0 #2d2d31;
+        }
+
+        .btn-default {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+        }
+
+        .btn-default:hover {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+        }
+
+        .btn-default:focus {
+            box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08), 0 0 0 0 rgba(23, 43, 77, .5);
+        }
+
+        .btn-default:disabled {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+        }
+
+        .btn-default:not(:disabled):not(.disabled):active {
+            color: #fff;
+            border-color: #2d2d31;
+            background-color: #2d2d31;
+        }
+
+        .btn-default:not(:disabled):not(.disabled):active:focus {
+            box-shadow: none, 0 0 0 0 rgba(23, 43, 77, .5);
+        }
+
+        .btn-sm {
+            font-size: .875rem;
+            line-height: 1.5;
+            padding: .25rem .5rem;
+            border-radius: .375rem;
         }
 
         /* App CSS. */
@@ -1099,7 +1371,7 @@
                 <div class="emailDate"> ••• </div>
                 <!-- Hardcoded data. -->
                 <div class="gmailMainContent">
-                    <div class="gmailTitle"> Recipt For Your Order </div>
+                    <div class="gmailTitle"> Receipt For Your Order </div>
                     <div class="gmailAdress"> administrator@auto.reply </div>
                     <div class="gmailDes"> Thank You for your order. Your Order Number ... </div>
                 </div>
@@ -1132,28 +1404,65 @@
         <!-- Contacts widget. -->
         <div id="cts">
             <!-- Hardcoded. -->
+            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
             <div class="contacts-container">
-                <img src="https://static.wikia.nocookie.net/despicableme/images/c/ca/Bob-from-the-minions-movie.jpg/revision/latest/top-crop/width/360/height/450?cb=20151224154354"
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <img id="imgoutput" src="https://hacking-with-ht.ml/homebase/extras/person.png"
                     alt="pfp" />
-                <div class="contactName"> Tom </div>
-                <div class="contactNumber"> (123)-456-789 </div>
-                <div class="contactEmail"> tomCruise1999@gmail.com </div>
+                    <input type="text" id="contactName"
+                    class="form-control form-control-alternative" placeholder="Contact 1">
+                    <input type="text" id="ContactNumber"
+                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
+                    <input type="text" id="contactEmail"
+                    class="form-control form-control-alternative" placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
-                <img src="https://static.wikia.nocookie.net/despicableme/images/1/1d/Kevin_minions.png/revision/latest?cb=20170703052012"
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
                     alt="pfp" />
-                <div class="contactName"> Mary </div>
-                <div class="contactNumber"> (987)-654-3210 </div>
-                <div class="contactEmail"> mary_300@gmail.com </div>
+                    <input type="text" id="contactName"
+                    class="form-control form-control-alternative" placeholder="Contact 2">
+                    <input type="text" id="ContactNumber"
+                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
+                    <input type="text" id="contactEmail"
+                    class="form-control form-control-alternative" placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
-                <img src="https://static.wikia.nocookie.net/despicableme/images/2/2b/Stuart.png/revision/latest?cb=20161108162855"
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
                     alt="pfp" />
-                <div class="contactName"> Benjamin </div>
-                <div class="contactNumber"> (564)-987-1234 </div>
-                <div class="contactEmail"> ben10@gmail.com </div>
+                    <input type="text" id="contactName"
+                    class="form-control form-control-alternative" placeholder="Contact 3">
+                    <input type="text" id="ContactNumber"
+                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
+                    <input type="text" id="contactEmail"
+                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+            </div>
+
+            <div class="contacts-container">
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
+                    alt="pfp" />
+                    <input type="text" id="contactName"
+                    class="form-control form-control-alternative" placeholder="Contact 4">
+                    <input type="text" id="ContactNumber"
+                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
+                    <input type="text" id="contactEmail"
+                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+            </div>
+
+            <div class="contacts-container">
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
+                    alt="pfp" />
+                    <input type="text" id="contactName"
+                    class="form-control form-control-alternative" placeholder="Contact 5">
+                    <input type="text" id="ContactNumber"
+                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
+                    <input type="text" id="contactEmail"
+                    class="form-control form-control-alternative" placeholder="example@gmail.com">
             </div>
 
             <!-- Page count. -->
@@ -1161,7 +1470,11 @@
                 <span class="dots" onclick="currentSlide(1)"></span>
                 <span class="dots" onclick="currentSlide(2)"></span>
                 <span class="dots" onclick="currentSlide(3)"></span>
+                <span class="dots" onclick="currentSlide(4)"></span>
+                <span class="dots" onclick="currentSlide(5)"></span>
             </div>
+
+            <a class="btn btn-info" onclick="editable()"> Edit Contacts</a>
         </div>
         <!-- Applist widget. -->
         <div id="app">
@@ -1477,6 +1790,12 @@
             for (i = 0; i < slide.length; i++) slide[i].style.display = `none`
             if (slide[slideInd - 1]) slide[slideInd - 1].style.display = `block`
         }
+
+        //edit contacts
+        var loadFile = function(event) {
+        var image = document.getElementById('imgoutput');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        };
 
         // Applist search logic.
         function search() {
