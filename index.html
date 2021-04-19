@@ -464,7 +464,9 @@
         #gml .gmailContent .emailDate {
             position: fixed;
             margin: 10px;
-            margin-left: 400px;
+            width: 100%;
+            text-align: end;
+            margin-left: -10px;
             font-size: 20px;
             white-space: nowrap;
         }
@@ -474,9 +476,8 @@
             flex-direction: column;
             font-size: 20px !important;
             position: relative;
-            text-align:left;
+            text-align: left;
             margin-left: 20px;
-            margin-top: 10px;
             font-size: 25px;
         }
 
@@ -601,11 +602,11 @@
             display: none;
         }
 
-        #cts .contacts-container p label{
+        #cts .contacts-container p label {
             max-height: 6px;
             max-width: 25px;
             position: fixed;
-            left:20px;
+            left: 20px;
             top: 75px;
             color: var(--master);
             align-items: center;
@@ -1404,74 +1405,70 @@
         <!-- Contacts widget. -->
         <div id="cts">
             <!-- Hardcoded. -->
-            <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+            <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"
+                    style="display: none;"></p>
             <div class="contacts-container">
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img id="imgoutput" src="https://hacking-with-ht.ml/homebase/extras/person.png"
-                    alt="pfp" />
-                    <input type="text" id="contactName"
-                    class="form-control form-control-alternative" placeholder="Contact 1">
-                    <input type="text" id="ContactNumber"
-                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
-                    <input type="text" id="contactEmail"
-                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+                <img id="imgoutput" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <input type="text" id="contactName" class="form-control form-control-alternative"
+                    placeholder="Contact 1">
+                <input type="text" id="ContactNumber" class="form-control form-control-alternative"
+                    placeholder="(000)-000-0000">
+                <input type="text" id="contactEmail" class="form-control form-control-alternative"
+                    placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
-                    alt="pfp" />
-                    <input type="text" id="contactName"
-                    class="form-control form-control-alternative" placeholder="Contact 2">
-                    <input type="text" id="ContactNumber"
-                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
-                    <input type="text" id="contactEmail"
-                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <input type="text" id="contactName" class="form-control form-control-alternative"
+                    placeholder="Contact 2">
+                <input type="text" id="ContactNumber" class="form-control form-control-alternative"
+                    placeholder="(000)-000-0000">
+                <input type="text" id="contactEmail" class="form-control form-control-alternative"
+                    placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
-                    alt="pfp" />
-                    <input type="text" id="contactName"
-                    class="form-control form-control-alternative" placeholder="Contact 3">
-                    <input type="text" id="ContactNumber"
-                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
-                    <input type="text" id="contactEmail"
-                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <input type="text" id="contactName" class="form-control form-control-alternative"
+                    placeholder="Contact 3">
+                <input type="text" id="ContactNumber" class="form-control form-control-alternative"
+                    placeholder="(000)-000-0000">
+                <input type="text" id="contactEmail" class="form-control form-control-alternative"
+                    placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
-                    alt="pfp" />
-                    <input type="text" id="contactName"
-                    class="form-control form-control-alternative" placeholder="Contact 4">
-                    <input type="text" id="ContactNumber"
-                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
-                    <input type="text" id="contactEmail"
-                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <input type="text" id="contactName" class="form-control form-control-alternative"
+                    placeholder="Contact 4">
+                <input type="text" id="ContactNumber" class="form-control form-control-alternative"
+                    placeholder="(000)-000-0000">
+                <input type="text" id="contactEmail" class="form-control form-control-alternative"
+                    placeholder="example@gmail.com">
             </div>
 
             <div class="contacts-container">
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png"
-                    alt="pfp" />
-                    <input type="text" id="contactName"
-                    class="form-control form-control-alternative" placeholder="Contact 5">
-                    <input type="text" id="ContactNumber"
-                    class="form-control form-control-alternative" placeholder="(000)-000-0000">
-                    <input type="text" id="contactEmail"
-                    class="form-control form-control-alternative" placeholder="example@gmail.com">
+                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <input type="text" id="contactName" class="form-control form-control-alternative"
+                    placeholder="Contact 5">
+                <input type="text" id="ContactNumber" class="form-control form-control-alternative"
+                    placeholder="(000)-000-0000">
+                <input type="text" id="contactEmail" class="form-control form-control-alternative"
+                    placeholder="example@gmail.com">
             </div>
 
             <!-- Page count. -->
             <div class="dot-container">
-                <span class="dots" onclick="currentSlide(1)"></span>
-                <span class="dots" onclick="currentSlide(2)"></span>
-                <span class="dots" onclick="currentSlide(3)"></span>
-                <span class="dots" onclick="currentSlide(4)"></span>
-                <span class="dots" onclick="currentSlide(5)"></span>
+                <span class="dots"></span>
+                <span class="dots"></span>
+                <span class="dots"></span>
+                <span class="dots"></span>
+                <span class="dots"></span>
             </div>
 
             <a class="btn btn-info" onclick="editable()"> Edit Contacts</a>
@@ -1678,7 +1675,7 @@
                         dots[n].classList.add(`active`)
                     }
                 document.addEventListener(`DOMContentLoaded`, init(currentSlide))
-                dots.forEach((dots, index) => dots.addEventListener(`click`, _ => { init(index); currentSlide = i }))
+                dots.forEach((dots, index) => dots.addEventListener(`click`, _ => { init(index) }))
             },
 
             // News API with local caching.
@@ -1792,9 +1789,9 @@
         }
 
         //edit contacts
-        var loadFile = function(event) {
-        var image = document.getElementById('imgoutput');
-        image.src = URL.createObjectURL(event.target.files[0]);
+        var loadFile = function (event) {
+            var image = document.getElementById('imgoutput');
+            image.src = URL.createObjectURL(event.target.files[0]);
         };
 
         // Applist search logic.
