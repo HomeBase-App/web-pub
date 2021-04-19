@@ -1275,11 +1275,137 @@
             background: white;
             color: black;
             margin-top: 70px;
-            font-size: 10px;
+            font-size: 20px;
             padding-left: 20px;
             padding-right: 20px;
             filter: drop-shadow(0px 0px 5px #111111);
             cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container-popup {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            height: 100%;
+            position: fixed;
+            backdrop-filter: blur(8px);
+            width: 100%;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            filter: drop-shadow(0px 0px 5px #111111);
+            transition-duration: 0.5s;
+        }
+
+        input {
+            border: none;
+        }
+
+        .content {
+            padding-left: 25px;
+            padding-right: 25px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-flow: column;
+            -ms-flex-flow: column;
+            flex-flow: column;
+            z-index: 5;
+        }
+
+        .welcome {
+            font-weight: 200;
+            text-align: center;
+            font-size: 40px;
+            font-size: 2.5rem;
+            letter-spacing: 0px;
+            letter-spacing: 0.05rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            line-height: 1em;
+            font-weight: 100;
+            letter-spacing: 0px;
+            letter-spacing: 0.02rem;
+        }
+
+        .menu {
+            background: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 50px;
+        }
+
+        .window {
+            z-index: 100;
+            color: #fff;
+            position: relative;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-flow: column;
+            -ms-flex-flow: column;
+            flex-flow: column;
+            box-shadow: 0px 15px 50px 10px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            border-radius: 15px;
+            background: #151515;
+            padding: 0 20px;
+        }
+
+        .input-line {
+            background: none;
+            margin-bottom: 10px;
+            line-height: 2.4em;
+            color: #fff;
+            font-weight: 300;
+            letter-spacing: 0px;
+            letter-spacing: 0.02rem;
+            font-size: 19px;
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.65);
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+        }
+
+        .highlight {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+            cursor: pointer;
+            transition: color .2s ease;
+        }
+
+        .highlight:hover {
+            color: #fff;
+            transition: color .2s ease;
+        }
+
+        .spacing {
+            -webkit-box-flex: 1;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            font-weight: 300;
+            text-align: center;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.65)
+        }
+
+        .full-width {
+            width: 100%;
+            margin-left: 2px;
         }
     </style>
 </head>
@@ -1306,6 +1432,46 @@
             <br />
             <button onclick="clearCache(true)">Yes</button>
             <button onclick="verified('cache-verify')">No</button>
+        </div>
+    </div>
+
+
+    <div class="container-popup">
+        <div class="window">
+            <div class="content">
+                <br />
+                <!-- App name. -->
+                <div class="welcome"> Add a Custom Website </div>
+                <!-- User notify. -->
+                <div class="subtitle"> This is where you can add your own website to the applist </div>
+                <!-- User input data. -->
+                <center>
+                    <div class="input-fields">
+                        <br />
+                        <input type="text" placeholder="Website title (Text)" class="input-line full-width"
+                            id="web-title"></input>
+                        <br />
+                        <br />
+                        <input type="text" placeholder="Website link (URL)" class="input-line full-width"
+                            id="web-link"></input>
+                        <br />
+                        <br />
+                        <input type="text" placeholder="Website icon (URL)" class="input-line full-width"
+                            id="web-icon"></input>
+                        <br />
+                        <br />
+                    </div>
+                    <br />
+                    <!-- Init login. -->
+                    <div><button class="ghost-round full-width" id="add-website" style="margin-top: -20px;"> Add
+                            website </button></div>
+                    <!-- Change to signup. -->
+                    <div class="spacing" onclick="location.href = `signup.html`"> or <span class="highlight"> Add an app
+                        </span>
+                    </div>
+                    <br />
+                </center>
+            </div>
         </div>
     </div>
 
@@ -1510,7 +1676,8 @@
         <div id="app">
             <!-- Search elements. -->
             <div class="search">
-                <input type="text" placeholder="Search" id="searchbar" onkeyup="search()">
+                <input type="text" placeholder="Search" id="searchbar" onkeyup="search()" list="dropdown">
+                <datalist id="dropdown"></datalist>
                 <button onclick="search()"><em class="fa fa-search" style="color: #2d2d31; opacity: 0.8;"
                         aria-label="Search"></em></button>
             </div>
@@ -1546,6 +1713,12 @@
 
     <!-- Javascript. -->
     <script>
+
+        let appLoadFile = event => {
+            var image = document.getElementById('app-output')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
+
         /**
          * This function merges multiple objects into one.
          * 
@@ -1750,12 +1923,23 @@
                 // Get preset app list.
                 let [apps, applist] = [JSON.parse(localStorage.getItem(`apps`)), new Array()]
 
+                apps.unshift({ title: `add-app-icon-to-user-app-list` })
+
                 // Rank apps.
                 apps = rankify(apps)
 
                 // Append new app data.
-                for (let app of apps) applist.push(`<li id="${app.title}" class="app"><div class="container" onclick="record('${app.title}', '${app.link}')" title="You have visited this website ${app.hits} ${app.hits === 1 ? `time` : `times`}!"><img src="https://hacking-with-ht.ml/homebase/icons/${!app.title.includes(` `) ? app.title.toLowerCase() : app.title.split(` `)[0].toLowerCase() + app.title.split(` `).slice(1).join(``)}.png" class="image" alt="app" /><div class="overlay"><div class="text"> ${app.title} </div></div></div></li>`)
+                for (let app of apps) if (app.title === `add-app-icon-to-user-app-list`) {
+                    applist.push(`<li id="${app.title}" class="app"><div class="container" onclick="openAppModal()" title="Add custom app"><img src="https://hacking-with-ht.ml/homebase/extras/plus.png" class="image" alt="app" /><div class="overlay"><div class="text"> Add App </div></div></div></li>`)
+                } else {
+                    // console.log(app)
+                    applist.push(`<li id="${app.title}" class="app"><div class="container" onclick="record('${app.title}', '${app.link}')" title="You have visited this website ${app.hits} ${app.hits === 1 ? `time` : `times`}!"><img src="${app.icon ? app.icon : `https://hacking-with-ht.ml/homebase/icons/${!app.title.includes(` `) ? app.title.toLowerCase() : app.title.split(` `)[0].toLowerCase() + app.title.split(` `).slice(1).join(``)}.png`}" class="image" alt="app" /><div class="overlay"><div class="text"> ${app.title} </div></div></div></li>`)
+                }
                 document.getElementById(`list`).innerHTML = applist.join(`\n`)
+
+                // document.getElementById(`add-app-icon-to-user-app-list`).addEventListener(`click`, _ => {
+                //     document.getElementsByClassName('continer-popup')[0].style.opacity = 1
+                // })
 
                 // Ranking logic.
                 function rankify(list) {
@@ -1767,14 +1951,25 @@
                         // For all with no data, set to 0.
                         for (let app of list) {
                             let dbObj = data.applist.find(obj => obj.name === app.title)
+                            data.applist = data.applist.filter(obj => obj.name !== app.title)
                             app.hits = dbObj ? dbObj.hits : 0
                         }
 
+                        for (let app of data.applist) {
+                            app.title = app.name
+                            list.push(app)
+                        }
+
                         // Return list.
-                        return list.sort((a, b) => b.hits - a.hits)
+                        list.sort((a, b) => b.hits - a.hits)
+                        list = list.filter(e => e.title !== `add-app-icon-to-user-app-list`)
+                        list.unshift({ title: `add-app-icon-to-user-app-list` })
+                        return list
                     } else {
                         // If no app clicks, set all to 0.
                         list.map(app => app.hits = 0)
+                        list = list.filter(e => e.title !== `add-app-icon-to-user-app-list`)
+                        list.unshift({ title: `add-app-icon-to-user-app-list` })
                         return list
                     }
                 }
@@ -1823,17 +2018,22 @@
 
         //edit contacts
         var loadFile = function (event) {
-            var image = document.getElementById('imgoutput');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
+            var image = document.getElementById('imgoutput')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
 
-        // Applist search logic. --------------------------------------------------------------------------------------------
+        // Applist search logic
         function search() {
             let [input, x] = [document.getElementById(`searchbar`).value.toLowerCase(), document.getElementsByClassName(`app`)]
+            let filtered = []
             for (let i = 0; i < x.length; i++) {
                 if (!x[i].id.toLowerCase().includes(input)) x[i].style.display = `none`
-                else x[i].style.display = `block`
+                else {
+                    x[i].style.display = `block`
+                    filtered.push(`<option value="${x[i].id}">`)
+                }
             }
+            document.getElementById(`dropdown`).innerHTML = filtered.join(`\n`)
         }
 
         // Record app clicks.
@@ -1848,7 +2048,7 @@
 
             // Set local cache.
             localStorage.setItem(`dbdata`, JSON.stringify(data))
-            window.open(`https://${link}`, `_blank`)
+            window.open(link.startsWith(`http`) ? link : `https://${link}`, `_blank`)
 
             // Update UI applist.
             functions.list()
@@ -1962,6 +2162,27 @@
         document.getElementById(`overlay`).onclick = _ => {
             Object.mergify(document.getElementById(`login`).style, { opacity: 0, pointerEvents: `none` })
             localStorage.setItem(`googleAuth`, `true`)
+        }
+
+        function openAppModal() {
+            Object.mergify(document.getElementsByClassName(`container-popup`)[0].style, { opacity: 1, pointerEvents: `auto` })
+        }
+
+        document.getElementById(`add-website`).onclick = _ => {
+            let [title, link, icon] = [document.getElementById(`web-title`).value, document.getElementById(`web-link`).value, document.getElementById(`web-icon`).value]
+            if (!link.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g) || !icon.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g)) {
+                document.getElementsByClassName(`subtitle`)[0].innerHTML = `Invalid URL Found`
+                document.getElementsByClassName(`subtitle`)[0].style.backgroundColor = `red`
+                document.getElementsByClassName(`subtitle`)[0].style.padding = `5px`
+                document.getElementsByClassName(`subtitle`)[0].style.borderRadius = `5px`
+                return
+            }
+
+            let data = JSON.parse(localStorage.getItem(`dbdata`))
+            data.applist.push({ name: title, link: link, icon: icon, hits: 0 })
+            localStorage.setItem(`dbdata`, JSON.stringify(data))
+            Object.mergify(document.getElementsByClassName(`container-popup`)[0].style, { opacity: 0, pointerEvents: `none` })
+            functions.list()
         }
     </script>
 </body>

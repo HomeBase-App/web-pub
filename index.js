@@ -54,7 +54,7 @@
 module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
 
   // Init browser properties.
-  let window = new BrowserWindow({ width: 800, height: 600, icon: `./logo.png` })
+  let window = new BrowserWindow({ width: 800, height: 600, icon: `icon.png` })
 
   // Make app fullscreen.
   window.maximize()
