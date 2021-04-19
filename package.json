@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "build": "electron-builder"
   },
   "repository": {
     "type": "git",

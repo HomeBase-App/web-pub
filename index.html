@@ -275,6 +275,22 @@
             font-weight: bold;
         }
 
+        /* Help icon. */
+
+        #help {
+            font-size: 40px;
+            margin-top: 8px;
+            margin-left: 7px;
+            float: left;
+            cursor: pointer;
+        }
+
+        #help span {
+            display: block;
+            font-size: 15px !important;
+            font-weight: bold;
+        }
+
         /* Reminder CSS */
 
         .widget .widget-header,
@@ -699,7 +715,7 @@
         #input-degree:focus {
             color: #2d2d31;
             outline: 0;
-            background-color:#151515;
+            background-color: #151515;
             box-shadow: none, none;
         }
 
@@ -1439,6 +1455,12 @@
     <div class="container-popup">
         <div class="window">
             <div class="content">
+                <em style="
+                position: absolute;
+                margin-top: 10px;
+                font-size: 30px;
+                margin-left: -30px;
+                cursor: pointer;" class="fas fa-times"></em>
                 <br />
                 <!-- App name. -->
                 <div class="welcome"> Add a Custom Website </div>
@@ -1500,6 +1522,9 @@
             <!-- Account information. -->
             <div id="profile" onclick="location.href = 'account.html'">
                 <em class="fas fa-user-circle"><span> ••• </span></em>
+            </div>
+            <div id="help" onclick="location.href = 'https://guides.home-base.gq'">
+                <em class="fas fa-info-circle"><span> Help </span></em>
             </div>
             <!-- Logout button. -->
             <div id="logout" onclick="logout()"><em class="fas fa-sign-out-alt"><span> Logout </span></em></div>
@@ -1923,13 +1948,13 @@
                 // Get preset app list.
                 let [apps, applist] = [JSON.parse(localStorage.getItem(`apps`)), new Array()]
 
-                apps.unshift({ title: `add-app-icon-to-user-app-list` })
+                apps.unshift({ title: `Add App` })
 
                 // Rank apps.
                 apps = rankify(apps)
 
                 // Append new app data.
-                for (let app of apps) if (app.title === `add-app-icon-to-user-app-list`) {
+                for (let app of apps) if (app.title === `Add App`) {
                     applist.push(`<li id="${app.title}" class="app"><div class="container" onclick="openAppModal()" title="Add custom app"><img src="https://hacking-with-ht.ml/homebase/extras/plus.png" class="image" alt="app" /><div class="overlay"><div class="text"> Add App </div></div></div></li>`)
                 } else {
                     // console.log(app)
@@ -1937,7 +1962,7 @@
                 }
                 document.getElementById(`list`).innerHTML = applist.join(`\n`)
 
-                // document.getElementById(`add-app-icon-to-user-app-list`).addEventListener(`click`, _ => {
+                // document.getElementById(`Add App`).addEventListener(`click`, _ => {
                 //     document.getElementsByClassName('continer-popup')[0].style.opacity = 1
                 // })
 
@@ -1962,14 +1987,14 @@
 
                         // Return list.
                         list.sort((a, b) => b.hits - a.hits)
-                        list = list.filter(e => e.title !== `add-app-icon-to-user-app-list`)
-                        list.unshift({ title: `add-app-icon-to-user-app-list` })
+                        list = list.filter(e => e.title !== `Add App`)
+                        list.unshift({ title: `Add App` })
                         return list
                     } else {
                         // If no app clicks, set all to 0.
                         list.map(app => app.hits = 0)
-                        list = list.filter(e => e.title !== `add-app-icon-to-user-app-list`)
-                        list.unshift({ title: `add-app-icon-to-user-app-list` })
+                        list = list.filter(e => e.title !== `Add App`)
+                        list.unshift({ title: `Add App` })
                         return list
                     }
                 }
@@ -2184,6 +2209,8 @@
             Object.mergify(document.getElementsByClassName(`container-popup`)[0].style, { opacity: 0, pointerEvents: `none` })
             functions.list()
         }
+
+        document.getElementsByClassName(`fa-times`)[0].onclick = _ => Object.mergify(document.getElementsByClassName(`container-popup`)[0].style, { opacity: 0, pointerEvents: `none` })
     </script>
 </body>
 

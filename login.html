@@ -292,11 +292,6 @@
                     <br />
                     <input type="password" placeholder="Password" class="input-line full-width" id="password"></input>
                     <input tabindex="-1" type="checkbox" onclick="showHide('password')"> Show Password </input>
-                    <br />
-                    <br />
-                    <input type="password" placeholder="Retype Password" class="input-line full-width"
-                        id="re-password"></input>
-                    <input tabindex="-1" type="checkbox" onclick="showHide('re-password')"> Show Password </input>
                 </div>
                 <br />
                 <br />
@@ -323,10 +318,6 @@
         // Password enter key event.
         document.getElementById(`password`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-init`).click() : null)
 
-        // Password enter key event.
-        document.getElementById(`re-password`).addEventListener(`keypress`, e => e.key === `Enter` ? document.getElementById(`account-init`).click() : null)
-
-
         // Init account login.
         let btn = document.getElementById(`account-init`)
         if (btn) {
@@ -334,14 +325,6 @@
 
             // Account login click event.
             btn.addEventListener(`click`, async _ => {
-
-                if (document.getElementById(`password`).value !== document.getElementById(`re-password`).value) {
-                    document.getElementsByClassName(`subtitle`)[0].innerHTML = `Passwords do not match!`
-                    document.getElementsByClassName(`subtitle`)[0].style.backgroundColor = `red`
-                    document.getElementsByClassName(`subtitle`)[0].style.padding = `5px`
-                    document.getElementsByClassName(`subtitle`)[0].style.borderRadius = `5px`
-                    return
-                }
 
                 // Check if any values are missing.
                 if (!document.getElementById(`username`).value || !document.getElementById(`password`).value) {
