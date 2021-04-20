@@ -1102,11 +1102,11 @@
 
         #new .news-container {
             position: fixed;
-            padding-top: 15px;
             padding-right: 40px;
             padding-left: 50px;
             font-size: 20px;
             font-weight: 250;
+            top: 50%;
         }
 
         #new .news-container a {
@@ -1121,7 +1121,7 @@
         .next {
             cursor: pointer;
             position: absolute;
-            top: 43%;
+            top: 65%;
             width: auto;
             margin-top: -30px;
             padding: 16px;
@@ -2203,6 +2203,7 @@
                 localStorage.removeItem(`news`)
                 localStorage.removeItem(`news-timer`)
                 localStorage.removeItem(`apps`)
+                localStorage.removeItem(`googleAuth`    )
 
                 // Set new cache.
                 localStorage.setItem(`dbdata`, JSON.stringify(body))
