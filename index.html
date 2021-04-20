@@ -467,6 +467,7 @@
             height: 30px;
             position: relative;
             right: 20px;
+            cursor:pointer;
         }
 
         #gml .gmailContent {
@@ -524,6 +525,7 @@
 
         .locationImage:hover img {
             content: url(https://hacking-with-ht.ml/homebase/extras/location.png);
+            cursor:pointer;
         }
 
         #wea {
@@ -631,7 +633,8 @@
             position: absolute;
             margin-top: 50px;
             margin-left: 4px;
-            max-height: 130px;
+            height: 130px;
+            width: 130px;
             display: block;
             border-radius: 10px;
             z-index: -1;
@@ -667,7 +670,7 @@
         .dots {
             position: relative;
             margin: 0 5px;
-            left: 45px;
+            right: 20px;
             cursor: pointer;
             height: 15px;
             width: 15px;
@@ -679,7 +682,7 @@
 
         .active,
         .dots:hover {
-            background-color: #CC1400;
+            background-color: var(--master);
         }
 
         .form-control {
@@ -1106,6 +1109,14 @@
             font-weight: 250;
         }
 
+        #new .news-container a{
+            text-decoration: none;
+        }
+
+        #new .news-container font{
+            font-weight: bold;
+        }
+
         #new .news-container img {
             position: fixed;
             bottom: 25px;
@@ -1142,7 +1153,7 @@
 
         #new .prev:hover,
         .next:hover {
-            color: white;
+            color: var(--master);
         }
 
         #map {
@@ -1604,9 +1615,10 @@
         <!-- Contacts widget. -->
         <div id="cts">
             <!-- Hardcoded. -->
-            <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"
-                    style="display: none;"></p>
+            
             <div class="contacts-container">
+                <p><input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)"
+                    style="display: none;"></p>
                 <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
                 <img id="imgoutput" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
                 <input type="text" id="contactName" class="form-control form-control-alternative"
@@ -1618,8 +1630,10 @@
             </div>
 
             <div class="contacts-container">
-                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <p><input type="file" accept="image/*" name="image" id="file1" onchange="loadFile1(event)"
+                    style="display: none;"></p>
+                <p><label for="file1" style="cursor: pointer;">Upload Image</label></p>
+                <img id="imgoutput1" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
                 <input type="text" id="contactName" class="form-control form-control-alternative"
                     placeholder="Contact 2">
                 <input type="text" id="ContactNumber" class="form-control form-control-alternative"
@@ -1629,8 +1643,10 @@
             </div>
 
             <div class="contacts-container">
-                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <p><input type="file" accept="image/*" name="image" id="file2" onchange="loadFile2(event)"
+                    style="display: none;"></p>
+                <p><label for="file2" style="cursor: pointer;">Upload Image</label></p>
+                <img id="imgoutput2" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
                 <input type="text" id="contactName" class="form-control form-control-alternative"
                     placeholder="Contact 3">
                 <input type="text" id="ContactNumber" class="form-control form-control-alternative"
@@ -1640,8 +1656,10 @@
             </div>
 
             <div class="contacts-container">
-                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <p><input type="file" accept="image/*" name="image" id="file3" onchange="loadFile3(event)"
+                    style="display: none;"></p>
+                <p><label for="file3" style="cursor: pointer;">Upload Image</label></p>
+                <img id="imgoutput3" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
                 <input type="text" id="contactName" class="form-control form-control-alternative"
                     placeholder="Contact 4">
                 <input type="text" id="ContactNumber" class="form-control form-control-alternative"
@@ -1651,8 +1669,10 @@
             </div>
 
             <div class="contacts-container">
-                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-                <img src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
+                <p><input type="file" accept="image/*" name="image" id="file4" onchange="loadFile4(event)"
+                    style="display: none;"></p>
+                <p><label for="file4" style="cursor: pointer;">Upload Image</label></p>
+                <img id="imgoutput4" src="https://hacking-with-ht.ml/homebase/extras/person.png" alt="pfp" />
                 <input type="text" id="contactName" class="form-control form-control-alternative"
                     placeholder="Contact 5">
                 <input type="text" id="ContactNumber" class="form-control form-control-alternative"
@@ -2044,6 +2064,22 @@
         //edit contacts
         var loadFile = function (event) {
             var image = document.getElementById('imgoutput')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
+        var loadFile1 = function (event) {
+            var image = document.getElementById('imgoutput1')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
+        var loadFile2 = function (event) {
+            var image = document.getElementById('imgoutput2')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
+        var loadFile3 = function (event) {
+            var image = document.getElementById('imgoutput3')
+            image.src = URL.createObjectURL(event.target.files[0])
+        }
+        var loadFile4 = function (event) {
+            var image = document.getElementById('imgoutput4')
             image.src = URL.createObjectURL(event.target.files[0])
         }
 
