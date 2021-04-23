@@ -2261,12 +2261,17 @@
                         <a class="btn btn-info hidden saveE" onclick="combineE()"> Save </a>
                         <hr class="my-4">
                         <!-- User apps information. -->
-                        <!-- <h6 class="heading-small text-muted mb-4"> Custom App List </h6>
+                        <h6 class="heading-small text-muted mb-4"> Custom App List </h6>
                         <div class="pl-lg-4">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" style="max-width: 100% !important; flex:100;">
                                     <div class="form-group" id="app-items">
-                                        <label class="form-control-label" for="app-list"> App information </label>
+                                        <label class="form-control-label" for="app-list"
+                                            style="min-width: 30%; margin-right: 10px;"> Custom app title </label>
+                                        <label class="form-control-label" for="app-list"
+                                            style="min-width: 30%; margin-right: 10px;"> Custom app URL </label>
+                                        <label class="form-control-label" for="app-list"
+                                            style="min-width: 30%; margin-right: 10px;"> Custom app icon </label>
                                         <div id="app-list">
                                         </div>
                                         <br />
@@ -2276,9 +2281,8 @@
                             </div>
                         </div>
                         <a class="btn btn-info" onclick="editableA()"> Edit app list </a>
-                        <a class="btn btn-info hidden saveA" onclick="combineA()"> Save </a> -->
+                        <a class="btn btn-info hidden saveA" onclick="combineA()"> Save </a>
                     </form>
-                    <!-- ^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$ -->
                 </div>
             </div>
         </div>
@@ -2290,12 +2294,13 @@
         // Get database data.
         let [data, obj, objA, emailGrey, appGrey] = [JSON.parse(localStorage.getItem(`dbdata`)), {}, {}, true, true]
 
-        // let custom = data.applist.filter(i => i.custom)
+        if (!data) location.href = `./login.html?redir=account`
+        let custom = data.applist.filter(i => i.custom)
 
         for (let i = 0; i < data.family.length; i++) obj[i] = data.family[i]
-        // for (let i = 0; i < custom.length; i++) objA[i] = custom[i]
+        for (let i = 0; i < custom.length; i++) objA[i] = custom[i]
 
-        // appList(objA, appGrey)
+        appList(objA, appGrey)
         emailList(obj, emailGrey)
 
         function emailList(list, grey) {
@@ -2304,11 +2309,17 @@
             for (let key of keys) document.getElementById(`email-list`).innerHTML += `<div class="family-email"><input ${grey ? `readOnly="true"` : ``} type="email" id="input-email" onkeyup="updateE('${key}')" class="form-control form-control-alternative family-email-box" placeholder="example@home-base.gq" value="${list[key]}" style="width: 90%; display: inline"><a class="btn btn-info cross-grey ${grey ? `grey` : ``}" onclick="remList('${key}')" style="margin-left: 10px;"> X </a></div>`
         }
 
-        // function appList(list, grey) {
-        //     document.getElementById(`app-list`).innerHTML = ``
-        //     let keys = Object.keys(list)
-        //     for (let key of keys) document.getElementById(`app-list`).innerHTML += `<div class="app-item"><input ${grey ? `readOnly="true"` : ``} type="link" id="input-app" onkeyup="updateA('${key}')" class="form-control form-control-alternative app-input-box" placeholder="google.com" value="${list[key].link}" style="width: 90%; display: inline"><a class="btn btn-info cross-grey-a ${grey ? `grey` : ``}" onclick="remListA('${key}')" style="margin-left: 10px;"> X </a></div>`
-        // }
+        function appList(list, grey) {
+            document.getElementById(`app-list`).innerHTML = ``
+            let keys = Object.keys(list)
+            for (let key of keys) document.getElementById(`app-list`).innerHTML += `
+            <div class="app-item">
+                <input ${grey ? `readOnly="true"` : ``} type="text" id="input-app-name" onkeyup="updateA('${key}', 'name')" class="form-control form-control-alternative app-input-box-name" placeholder="Google" value="${list[key].name}" style="width: 90%; display: inline; width: 30%; margin-right: 10px;">
+                <input ${grey ? `readOnly="true"` : ``} type="link" id="input-app-link" onkeyup="updateA('${key}', 'link')" class="form-control form-control-alternative app-input-box-link" placeholder="google.com" value="${list[key].link}" style="width: 90%; display: inline; width: 30%; margin-right: 10px;">
+                <input ${grey ? `readOnly="true"` : ``} type="text" id="input-app-icon" onkeyup="updateA('${key}', 'icon')" class="form-control form-control-alternative app-input-box-icon" placeholder="https://google.com/icon.png" value="${list[key].icon}" style="width: 90%; display: inline; width: 30%; margin-right: 10px;">
+                <a class="btn btn-info cross-grey-a ${grey ? `grey` : ``}" onclick="remListA('${key}')" style="margin-left: 10px;"> X </a>
+            </div>`
+        }
 
         function remList(id) {
             if (emailGrey) return
@@ -2320,21 +2331,20 @@
             emailList(obj, emailGrey)
         }
 
-        // function remListA(id) {
-        //     if (appGrey) return
-        //     delete objA[id]
-        //     let [array, newObj] = [new Array(), {}]
-        //     Object.keys(objA).forEach(key => array.push(objA[key]))
-        //     for (let i = 0; i < array.length; i++) newObj[i] = array[i]
-        //     objA = newObj
-        //     appList(objA, appGrey)
-        // }
+        function remListA(id) {
+            if (appGrey) return
+            data.applist = data.applist.filter(i => i.name !== objA[id].name)            
+            delete objA[id]
+            let [array, newObj] = [new Array(), {}]
+            Object.keys(objA).forEach(key => array.push(objA[key]))
+            for (let i = 0; i < array.length; i++) newObj[i] = array[i]
+            objA = newObj
+            appList(objA, appGrey)
+        }
 
         function updateE(id) { obj[id] = document.getElementsByClassName(`family-email-box`)[id].value }
 
-        // function updateA(id) { objA[id].link = document.getElementsByClassName(`app-input-box`)[id - 1].value }
-
-        if (!data) location.href = `./login.html?redir=account`
+        function updateA(id, type) { objA[id][type] = document.getElementsByClassName(`app-input-box-${type}`)[id].value }
 
         // Set element ids/values.
         let [userData, elements] = [
@@ -2390,21 +2400,23 @@
         }
 
 
-        // function editableA() {
-        //     appGrey = false
-        //     let ememets = document.getElementsByClassName(`app-input-box`)
-        //     for (let i = 0; i < ememets.length; i++) {
-        //         ememets[i].readOnly = false
-        //     }
-        //     ememets = document.getElementsByClassName(`cross-grey-a`)
-        //     for (let i = 0; i < ememets.length; i++) {
-        //         ememets[i].style.opacity = 1
-        //         ememets[i].style.pointerEvents = `auto`
-        //     }
-        //     document.getElementsByClassName(`app-add`)[0].style.opacity = 1
-        //     document.getElementsByClassName(`app-add`)[0].style.pointerEvents = `auto`
-        //     document.getElementsByClassName(`saveA`)[0].classList.remove(`hidden`)
-        // }
+        function editableA() {
+            appGrey = false
+            for (let id of [`name`, `link`, `icon`]) {
+                let ememets = document.getElementsByClassName(`app-input-box-${id}`)
+                for (let i = 0; i < ememets.length; i++) {
+                    ememets[i].readOnly = false
+                }
+            }
+            ememets = document.getElementsByClassName(`cross-grey-a`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].style.opacity = 1
+                ememets[i].style.pointerEvents = `auto`
+            }
+            document.getElementsByClassName(`app-add`)[0].style.opacity = 1
+            document.getElementsByClassName(`app-add`)[0].style.pointerEvents = `auto`
+            document.getElementsByClassName(`saveA`)[0].classList.remove(`hidden`)
+        }
 
         function combineE() {
             let fail = validate()
@@ -2449,50 +2461,64 @@
             }
         }
 
-        // function combineA() {
-        //     let fail = validate()
-        //     if (fail) return
-        //     let [elements, list] = [document.getElementsByClassName(`app-input-box`), new Array()]
-        //     for (let i = 0; i < elements.length; i++) if (elements[i].value) list.push(elements[i].value)
-        //     data.applist = list
-        //     appGrey = true
-        //     let ememets = document.getElementsByClassName(`app-input-box`)
-        //     for (let i = 0; i < ememets.length; i++) {
-        //         ememets[i].readOnly = true
-        //     }
-        //     ememets = document.getElementsByClassName(`cross-grey-a`)
-        //     for (let i = 0; i < ememets.length; i++) {
-        //         ememets[i].style.opacity = 0
-        //         ememets[i].style.pointerEvents = `none`
-        //     }
-        //     document.getElementsByClassName(`app-add`)[0].style.opacity = 0
-        //     document.getElementsByClassName(`app-add`)[0].style.pointerEvents = `none`
-        //     document.getElementsByClassName(`saveA`)[0].classList.add(`hidden`)
-        //     let newObj = {}
-        //     let custom = data.applist.filter(i => i.custom)
+        function combineA() {
+            let fail = validate()
+            if (fail) return
+            let elements = document.getElementsByClassName(`app-input-box-name`)
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].value) {
+                    let req = data.applist.find(a => a.name === elements[i].value)
+                    if (!req) data.applist.push({ name: elements[i].value, link: document.getElementsByClassName(`app-input-box-link`)[i].value, icon: document.getElementsByClassName(`app-input-box-icon`)[i].value, hits: 0, custom: true })
+                    else {
+                        data.applist = data.applist.filter(a => a.name !== elements[i].value)
+                        req.name = elements[i].value
+                        req.link = document.getElementsByClassName(`app-input-box-link`)[i].value
+                        req.icon = document.getElementsByClassName(`app-input-box-icon`)[i].value
+                        data.applist.push(req)
+                    }
+                }
+            }
+            appGrey = true
+            for (let id of [`name`, `link`, `icon`]) {
+                let ememets = document.getElementsByClassName(`app-input-box-${id}`)
+                for (let i = 0; i < ememets.length; i++) {
+                    ememets[i].readOnly = true
+                }
+            }
+            ememets = document.getElementsByClassName(`cross-grey-a`)
+            for (let i = 0; i < ememets.length; i++) {
+                ememets[i].style.opacity = 0
+                ememets[i].style.pointerEvents = `none`
+            }
+            document.getElementsByClassName(`app-add`)[0].style.opacity = 0
+            document.getElementsByClassName(`app-add`)[0].style.pointerEvents = `none`
+            document.getElementsByClassName(`saveA`)[0].classList.add(`hidden`)
+            let newObj = {}
+            let custom = data.applist.filter(i => i.custom)
+            for (let i = 0; i < custom.length; i++) newObj[i] = custom[i]
+            objA = newObj
+            appList(objA, appGrey)
 
-        //     for (let i = 0; i < custom.length; i++) newObj[i] = custom[i]
-        //     objA = newObj
-        //     appList(objA, appGrey)
+            update(data)
 
-        //     update(data)
-
-        //     function validate() {
-        //         let elements = document.getElementsByClassName(`app-input-box`)
-        //         for (let i = 0; i < elements.length; i++) {
-        //             if (!elements[i].value.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g) && elements[i].value !== ``) {
-        //                 elements[i].title = `Not a valid URL`
-        //                 elements[i].style.background = `#CC1400`
-        //                 elements[i].style.color = `var(--white)`
-        //                 return true
-        //             } else {
-        //                 elements[i].title = ``
-        //                 elements[i].style.background = `#FFF`
-        //                 elements[i].style.color = `#2d2d31`
-        //             }
-        //         }
-        //     }
-        // }
+            function validate() {
+                for (let id of [`link`, `icon`]) {
+                    let elements = document.getElementsByClassName(`app-input-box-${id}`)
+                    for (let i = 0; i < elements.length; i++) {
+                        if (!elements[i].value.match(/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/g) && elements[i].value !== ``) {
+                            elements[i].title = `Not a valid URL`
+                            elements[i].style.background = `#CC1400`
+                            elements[i].style.color = `var(--white)`
+                            return true
+                        } else {
+                            elements[i].title = ``
+                            elements[i].style.background = `#FFF`
+                            elements[i].style.color = `#2d2d31`
+                        }
+                    }
+                }
+            }
+        }
 
         // Combine new data and update database.
         function combine() {
@@ -2529,13 +2555,13 @@
 
         document.getElementsByClassName(`family-add`)[0].addEventListener(`click`, async _ => {
             let len = Object.keys(obj).length
-            obj[len + 1] = ``
+            obj[len] = ``
             emailList(obj, emailGrey)
         })
 
         document.getElementsByClassName(`app-add`)[0].addEventListener(`click`, async _ => {
             let len = Object.keys(objA).length
-            objA[len + 1] = { link: `` }
+            objA[len] = { name: ``, link: ``, icon: ``, hits: 0, custom: true }
             appList(objA, appGrey)
         })
     </script>
