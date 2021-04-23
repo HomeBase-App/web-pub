@@ -374,7 +374,7 @@
                     <br />
                     <input type="password" placeholder="Password" class="input-line half-width"
                         id="verpassword"></input>
-                    <input type="location" placeholder="City, State/Providence" class="input-line half-width"
+                    <input type="location" placeholder="City, State/Province" class="input-line half-width"
                         id="location"></input>
                     <br />
                     <input tabindex="-1" type="checkbox" onclick="showHide('verpassword')"> Show Password </input>
@@ -577,7 +577,7 @@
                     data: {
                         location: document.getElementById(`location`).value,
                         nickname: `${document.getElementById(`firstname`).value} ${document.getElementById(`lastname`).value}`,
-                        family: emails
+                        family: document.getElementById(`emails`).value.includes(`,`) ? document.getElementById(`emails`).value.split(`,`).map(e => e.trim()) : [document.getElementById(`emails`).value]
                     }
                 }),
                 headers: { 'Content-Type': 'application/json' },
