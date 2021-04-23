@@ -189,7 +189,8 @@
             margin-top: 25px;
         }
 
-        .container, .vercontainer {
+        .container,
+        .vercontainer {
             display: -webkit-box;
             display: -webkit-flex;
             display: -ms-flexbox;
@@ -328,28 +329,32 @@
 
 <body>
 
-    <div id="final-verify">        
-    <div class="vercontainer">
-        <div class="window">
-            <div class="content">
-                <br />
-                <!-- App name. -->
-                <div class="welcome"> HomeBase </div>
-                <!-- User notify. -->
-                <div class="finversubtitle"> Final step: Verify your password </div>
-                <!-- User input data. -->
-                <div class="input-fields">
-                    <input type="password" placeholder="Password" class="input-line full-width" id="holdverpassword"></input>
-                    <input tabindex="-1" type="checkbox" onclick="showHide('holdverpassword')"> Show Password </input>
+    <div id="final-verify">
+        <div class="vercontainer">
+            <div class="window">
+                <div class="content">
+                    <br />
+                    <!-- App name. -->
+                    <div class="welcome"> HomeBase </div>
+                    <!-- User notify. -->
+                    <div class="finversubtitle"> Final step: Verify your password </div>
+                    <!-- User input data. -->
+                    <div class="input-fields">
+                        <input type="password" placeholder="Password" class="input-line full-width"
+                            id="holdverpassword"></input>
+                        <input tabindex="-1" type="checkbox" onclick="showHide('holdverpassword')"> Show Password
+                        </input>
+                        <br />
+                        <br />
+                        <input type="password" placeholder="Password" class="input-line full-width"
+                            id="finverpassword"></input>
+                        <input tabindex="-1" type="checkbox" onclick="showHide('finverpassword')"> Show Password
+                        </input>
+                    </div>
                     <br />
                     <br />
-                    <input type="password" placeholder="Password" class="input-line full-width" id="finverpassword"></input>
-                    <input tabindex="-1" type="checkbox" onclick="showHide('finverpassword')"> Show Password </input>
-                </div>
-                <br />
-                <br />
-                <!-- Init signup. -->
-                <div><button class="ghost-round full-width" id="finish-create"> Finish sign up </button></div>
+                    <!-- Init signup. -->
+                    <div><button class="ghost-round full-width" id="finish-create"> Finish sign up </button></div>
                 </div>
                 <br />
             </div>
@@ -390,9 +395,11 @@
                 <br />
                 <!-- Init signup. -->
                 <center>
-                    <input tabindex="-1" type="checkbox" id="tos"> By clicking Finish Sign Up you agree to our Terms and
-                    Data Use
-                    Policy, including our storage use. </input>
+                    <input tabindex="-1" type="checkbox" id="tos">
+                    By clicking Finish Sign Up you agree to our <a href="https://jonin.gq/pp">Terms</a> and <a
+                        href="https://jonin.gq/privacy-policy">Data Use Policy</a>, including our <a
+                        href="https://kura.gq/?to=share">storage use</a>.
+                    </input>
                     <br />
                     <br />
                     <div><button class="ghost-round half-width" id="account-create"> Next Step </button></div>
@@ -554,10 +561,10 @@
             localStorage.setItem(`username`, document.getElementById(`verusername`).value)
 
             if (document.getElementById(`holdverpassword`).value !== document.getElementById(`finverpassword`).value) {
-                    document.getElementsByClassName(`finversubtitle`)[0].innerHTML = `Both passwords do not match!`
-                    document.getElementsByClassName(`finversubtitle`)[0].style.backgroundColor = `red`
-                    document.getElementsByClassName(`finversubtitle`)[0].style.padding = `5px`
-                    document.getElementsByClassName(`finversubtitle`)[0].style.borderRadius = `5px`
+                document.getElementsByClassName(`finversubtitle`)[0].innerHTML = `Both passwords do not match!`
+                document.getElementsByClassName(`finversubtitle`)[0].style.backgroundColor = `red`
+                document.getElementsByClassName(`finversubtitle`)[0].style.padding = `5px`
+                document.getElementsByClassName(`finversubtitle`)[0].style.borderRadius = `5px`
                 return
             }
 
