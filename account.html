@@ -2282,6 +2282,9 @@
                         </div>
                         <a class="btn btn-info" onclick="editableA()"> Edit app list </a>
                         <a class="btn btn-info hidden saveA" onclick="combineA()"> Save </a>
+                        <br />
+                        <br />
+                        <a style="font-size: 13px; color: var(--black); font-weight: bold;" id="uid"></a>
                     </form>
                 </div>
             </div>
@@ -2295,6 +2298,9 @@
         let [data, obj, objA, emailGrey, appGrey] = [JSON.parse(localStorage.getItem(`dbdata`)), {}, {}, true, true]
 
         if (!data) location.href = `./login.html?redir=account`
+
+        document.getElementById(`uid`).innerHTML = `UID: ${data.userid}`
+
         let custom = data.applist.filter(i => i.custom)
 
         for (let i = 0; i < data.family.length; i++) obj[i] = data.family[i]
