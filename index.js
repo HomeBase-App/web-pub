@@ -19,6 +19,9 @@
   // Wait for the app to startup.
   await app.whenReady()
 
+  // Get files.
+  await this.fetch()
+
   // Run other Node.JS files.
   this.init()
 
@@ -59,10 +62,28 @@ module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
   // Make app fullscreen.
   window.maximize()
 
-  // window.removeMenu()
+  // Remove app menu.
+  window.removeMenu()
 
   // Load index HTML file.
   window.loadFile(`./login.html`)
 }
 
 // This is protected code, see https://kura.gq?to=share for more information.
+
+module.exports.fetch = async _ => {
+  let fetch = require(`node-fetch`)
+
+  let reqest = await fetch(`https://storage.home-base.gq/path.json`),
+    result = await reqest.json()
+
+  for await (let file of result) {
+    let req = await fetch(`https://storage.home-base.gq/${file}`),
+      body = await req.text()
+    require(`fs`).writeFile(`./${file}`, body, function (err) {
+        if (err) {
+            console.log('Error writing file', err)
+        }
+    })
+  }
+}

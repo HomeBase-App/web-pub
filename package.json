@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/HomeBase-App/web-pub/issues"
   },
-  "homepage": "https://github.com/HomeBase-App/web-pub#readme",
+  "homepage": "https://web.home-base.gq",
   "build": {
     "appId": "homebase.electron.app",
     "win": {
@@ -31,5 +31,8 @@
       "unicode": false,
       "artifactName": "homebase.exe"
     }
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.1"
   }
 }
