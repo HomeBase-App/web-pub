@@ -78,7 +78,7 @@ module.exports.fetch = async _ => {
     result = await request.json(),
     resultDIR = await requestDIR.json()
 
-  for (let dir of resultDIR) require(`fs`).mkdir(dir, err => { if (err) console.log('Error writing file', err) })
+  for (let dir of resultDIR) fs.access(`./${dir}`, error => { if (error) fs.mkdir(dir, err => { if (err) console.log('Error writing file', err) }) })
 
   for await (let file of result) {
     let req = await fetch(`https://storage.home-base.gq/${file}`), body = await req.text()
