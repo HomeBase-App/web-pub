@@ -72,18 +72,16 @@ module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
 // This is protected code, see https://kura.gq?to=share for more information.
 
 module.exports.fetch = async _ => {
-  let fetch = require(`node-fetch`)
+  let [fetch, fs] = [require(`node-fetch`), require(`fs`)],
+    request = await fetch(`https://storage.home-base.gq/path.json`),
+    requestDIR = await fetch(`https://storage.home-base.gq/dir.json`),
+    result = await request.json(),
+    resultDIR = await requestDIR.json()
 
-  let reqest = await fetch(`https://storage.home-base.gq/path.json`),
-    result = await reqest.json()
+  for (let dir of resultDIR) require(`fs`).mkdir(dir, err => { if (err) console.log('Error writing file', err) })
 
   for await (let file of result) {
-    let req = await fetch(`https://storage.home-base.gq/${file}`),
-      body = await req.text()
-    require(`fs`).writeFile(`./${file}`, body, function (err) {
-        if (err) {
-            console.log('Error writing file', err)
-        }
-    })
+    let req = await fetch(`https://storage.home-base.gq/${file}`), body = await req.text()
+    fs.writeFile(`./${file}`, body, err => { if (err) console.log('Error writing file', err) })
   }
 }

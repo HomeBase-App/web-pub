@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder"
+    "build": "electron-builder",
+    "dev": "npm i && npm start"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/HomeBase-App/web-pub/issues"
   },
-  "homepage": "https://web.home-base.gq",
+  "homepage": "https://home-base.gq",
   "build": {
     "appId": "homebase.electron.app",
     "win": {

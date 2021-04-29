@@ -1,10 +1,10 @@
 # Files
 package-lock.json
 
-# Folders
-/node_modules
-
 # Files that will be pulled everytime
 *.html
 css/*.css
 js/*.js
+
+# No folders should be commited
+/*
