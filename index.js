@@ -20,7 +20,7 @@
   await app.whenReady()
 
   // Get files.
-  await this.fetch()
+  // await this.fetch()
 
   // Run other Node.JS files.
   this.init()
@@ -63,7 +63,7 @@ module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
   window.maximize()
 
   // Remove app menu.
-  window.removeMenu()
+  // window.removeMenu()
 
   // Load index HTML file.
   window.loadFile(`./login.html`)
@@ -71,17 +71,17 @@ module.exports.init = ({ BrowserWindow } = require(`electron`)) => {
 
 // This is protected code, see https://kura.gq?to=share for more information.
 
-module.exports.fetch = async _ => {
-  let [fetch, fs] = [require(`node-fetch`), require(`fs`)],
-    request = await fetch(`https://storage.home-base.gq/path.json`),
-    requestDIR = await fetch(`https://storage.home-base.gq/dir.json`),
-    result = await request.json(),
-    resultDIR = await requestDIR.json()
+// module.exports.fetch = async _ => {
+//   let [fetch, fs] = [require(`node-fetch`), require(`fs`)],
+//     request = await fetch(`https://storage.home-base.gq/path.json`),
+//     requestDIR = await fetch(`https://storage.home-base.gq/dir.json`),
+//     result = await request.json(),
+//     resultDIR = await requestDIR.json()
 
-  for (let dir of resultDIR) fs.access(`./${dir}`, error => { if (error) fs.mkdir(dir, err => { if (err) console.log('Error writing file', err) }) })
+//   for (let dir of resultDIR) fs.access(`./${dir}`, error => { if (error) fs.mkdir(dir, err => { if (err) console.log('Error writing file', err) }) })
 
-  for await (let file of result) {
-    let req = await fetch(`https://storage.home-base.gq/${file}`), body = await req.text()
-    fs.writeFile(`./${file}`, body, err => { if (err) console.log('Error writing file', err) })
-  }
-}
+//   for await (let file of result) {
+//     let req = await fetch(`https://storage.home-base.gq/${file}`), body = await req.text()
+//     fs.writeFile(`./${file}`, body, err => { if (err) console.log('Error writing file', err) })
+//   }
+// }
