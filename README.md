@@ -2,7 +2,7 @@
     <a href="https://twitter.com/iKurasad">
         <img src="https://img.shields.io/badge/Co--creator-Dhanush%20Pulavarthy-%23FF0092" alt="Dhanush Pulavarthy" />
     </a>
-    <a href="URL">
+    <a href="https://www.linkedin.com/in/tejaskamtam/">
         <img src="https://img.shields.io/badge/Co--creator-Tejas%20Kamtam-%23FF0092" alt="Tejas Kamtam" />
     </a>
     <a href="URL">
